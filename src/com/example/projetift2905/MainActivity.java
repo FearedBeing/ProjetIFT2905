@@ -1,29 +1,83 @@
 package com.example.projetift2905;
 
-import android.app.Activity;
 import android.app.ActionBar;
-import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
-	@Override
+	PagerAdapter adapter;
+	ViewPager pager;
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		adapter = new PagerAdapter(getSupportFragmentManager());
+        pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(adapter);
+        
+        final ActionBar actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        
+        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+        	
+            public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+                pager.setCurrentItem(tab.getPosition());
+            }
 
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+            public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {}
+            public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {}
+            
+        };
+        
+        for (int i = 0; i < adapter.getCount(); i++) {
+            actionBar.addTab(
+                    actionBar.newTab()
+                            .setText(adapter.getPageTitle(i))
+                            .setTabListener(tabListener));
+        }
+        
+       
+	}
+	
+	private class PagerAdapter extends FragmentPagerAdapter{
+		
+		public PagerAdapter(FragmentManager fm){
+			super(fm);
+		}
+		
+		public Fragment getItem(int i) {
+			PagerFragment f = new PagerFragment();
+			Bundle args = new Bundle();
+			args.putInt("id", i);
+			f.setArguments(args);
+			return f;
+		}
+		
+		public int getCount() {
+			return 3;
+		}
+		
+		public CharSequence getPageTitle(int position) {
+			if(position == 0) return "Tous les tournois";
+			if(position == 1) return "Tournois Favoris";
+			if(position == 2) return "Mes tournois";
+			return null;
 		}
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -55,7 +109,7 @@ public class MainActivity extends Activity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
+			View rootView = inflater.inflate(R.layout.placeholder, container,
 					false);
 			return rootView;
 		}
