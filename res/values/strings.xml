@@ -8,5 +8,7 @@
     <string name="title_section1">Tous les tournois</string>
     <string name="title_section2">Favoris</string>
     <string name="title_section3">Mes tournois</string>
+    <string name="title_activity_details_tournoi">DetailsTournoi</string>
+    <string name="DetailsTournoi_Id">-1</string>
 
 </resources>

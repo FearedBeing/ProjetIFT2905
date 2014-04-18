@@ -2,6 +2,7 @@ package com.example.projetift2905;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -12,8 +13,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.Toast;
+//CV
 
 public class MainActivity extends FragmentActivity {
 
@@ -23,6 +27,17 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+				
+		//CV
+		((Button)findViewById(R.id.buttonToDetailsTournoi)).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Toast.makeText(getApplicationContext(), "boutonToDetailsTournoi appuyé", Toast.LENGTH_SHORT).show();
+				
+				Intent i = new Intent(MainActivity.this, DetailsTournoi.class);
+				startActivity(i);
+			}
+		});	
 		
 		adapter = new PagerAdapter(getSupportFragmentManager());
         pager = (ViewPager) findViewById(R.id.pager);
@@ -114,5 +129,6 @@ public class MainActivity extends FragmentActivity {
 			return rootView;
 		}
 	}
+	
 
 }
