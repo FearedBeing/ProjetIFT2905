@@ -32,7 +32,7 @@ public class MainActivity extends FragmentActivity {
 		((Button)findViewById(R.id.buttonToDetailsTournoi)).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Toast.makeText(getApplicationContext(), "boutonToDetailsTournoi appuyé", Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getApplicationContext(), "boutonToDetailsTournoi appuyé", Toast.LENGTH_SHORT).show(); // C'est beau, ça marche..
 				
 				Intent i = new Intent(MainActivity.this, DetailsTournoi.class);
 				startActivity(i);

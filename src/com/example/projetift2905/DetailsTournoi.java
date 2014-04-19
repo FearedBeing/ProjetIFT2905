@@ -43,19 +43,15 @@ public class DetailsTournoi extends Activity {
 		((Button)findViewById(R.id.button1)).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Toast.makeText(getApplicationContext(), "testAPI", Toast.LENGTH_SHORT).show();
+
 				
-				new BinaryBeastAPI("e17d31bfcbedd1c39bcb018c5f0d0fbf.4dcb36f5cc0d74.24632846");		//et la...c'est le drame. J'ai commenté la suite 
-																									//mais en théorie ca devrait afficher le resultat 
-																									//de l'appel sur la console
+				new BinaryBeastAPI("3ad9fe9061f6dfe3f0d7d495a3bf8611.533c43d1901466.70692389");	
 				
+				Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();		//Pour verifier si la librairie
+																																	//est correctement referencee.
 				
-				/*
-				System.out.println("Thanks for testing, welcome to the BinaryBeast API Version: " + BinaryBeastAPI.API_VERSION);
-				
-				BBRequest.gameSearch("starcraft").execute(new BBRequestHandler()
+				BBRequest.gameSearch("star").execute(new BBRequestHandler()
 				{
-					@Override
 					public void onResponse(BBResult result)
 					{
 						//Toast.makeText(getApplicationContext(), "onResponse", Toast.LENGTH_SHORT).show();
@@ -75,7 +71,7 @@ public class DetailsTournoi extends Activity {
 						else System.err.println("Response Error: " + result.result);
 					}
 				});
-				*/
+				
 
 			}
 		});	
