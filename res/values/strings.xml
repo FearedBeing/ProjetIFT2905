@@ -10,5 +10,14 @@
     <string name="title_section3">Mes tournois</string>
     <string name="title_activity_details_tournoi">DetailsTournoi</string>
     <string name="DetailsTournoi_Id">-1</string>
+    <string name="title_activity_creer_tournoi">CreerTournoi</string>
+    <string name="LoL">League</string>
+    <string name="DOTA2">1</string>
+    
+    <string-array name="games">
+        <item>LeagueOfLegends</item>
+        <item>Dota2</item>
+        <item>CSS</item>
+    </string-array>
 
 </resources>

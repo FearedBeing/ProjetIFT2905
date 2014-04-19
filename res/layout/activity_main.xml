@@ -20,5 +20,12 @@
          android:layout_gravity="bottom|center_vertical"
          android:text="TestDetailTournoi" />
 
+     <Button
+         android:id="@+id/buttonToCreerTournoi"
+         style="?android:attr/buttonStyleSmall"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="CreerTournoi" />
+
 </FrameLayout>
 

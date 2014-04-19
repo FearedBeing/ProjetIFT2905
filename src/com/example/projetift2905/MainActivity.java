@@ -28,13 +28,18 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 				
-		//CV
 		((Button)findViewById(R.id.buttonToDetailsTournoi)).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				//Toast.makeText(getApplicationContext(), "boutonToDetailsTournoi appuyé", Toast.LENGTH_SHORT).show(); // C'est beau, ça marche..
-				
 				Intent i = new Intent(MainActivity.this, DetailsTournoi.class);
+				startActivity(i);
+			}
+		});		
+		
+		((Button)findViewById(R.id.buttonToCreerTournoi)).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent i = new Intent(MainActivity.this, CreerTournoi.class);
 				startActivity(i);
 			}
 		});	

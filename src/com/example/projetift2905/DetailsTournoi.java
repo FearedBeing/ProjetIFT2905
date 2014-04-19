@@ -40,7 +40,7 @@ public class DetailsTournoi extends Activity {
 		
 		
 		
-		((Button)findViewById(R.id.button1)).setOnClickListener(new OnClickListener() {
+		((Button)findViewById(R.id.buttonTestAPI)).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 
@@ -50,6 +50,30 @@ public class DetailsTournoi extends Activity {
 				Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();		//Pour verifier si la librairie
 																																	//est correctement referencee.
 				
+				//Methode1			
+				BBRequest request = new BBRequest("Game.GameSearch.Search");
+				request.addArg("filter", "star");
+				request.execute(new BBRequestHandler(){
+						public void onResponse(BBResult result)
+						{
+							if(result.result == 200)
+							{
+								System.out.println("*Methode1: ");
+								
+								//Let's loop through the results
+								JSONArray games = result.optJSONArray("Games");
+								for(int x = 0; x < games.length(); x++)
+								{
+									JSONObject game = games.optJSONObject(x);
+									System.out.println("*"+x + ": " + game.optString("Game") + " (GameCode: " + game.optString("GameCode") + ")");
+									//System.out.println("// "+x + ": " + game.optString("TourneyID") + " (GameCode: " + game.optString("GameCode") + ")");
+								}
+							}
+							else System.err.println("Response Error: " + result.result);
+						}
+					});
+
+				//Methode2
 				BBRequest.gameSearch("star").execute(new BBRequestHandler()
 				{
 					public void onResponse(BBResult result)
@@ -60,10 +84,13 @@ public class DetailsTournoi extends Activity {
 
 						if(result.result == 200)
 						{
+							System.out.println("Methode2: ");
+							
 							//Let's loop through the results
 							JSONArray games = result.optJSONArray("Games");
 							for(int x = 0; x < games.length(); x++)
 							{
+								
 								JSONObject game = games.optJSONObject(x);
 								System.out.println(x + ": " + game.optString("Game") + " (GameCode: " + game.optString("GameCode") + ")");
 							}
