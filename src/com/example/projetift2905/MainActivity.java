@@ -1,25 +1,45 @@
 package com.example.projetift2905;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
 	PagerAdapter adapter;
 	ViewPager pager;
+	SelectionTournoiAPI api;
+	List<MainPagerFragment> fragList;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
 		
+		/* **************************************
+		 * APPEL API POUR CREER LISTE DE TOURNOIS
+		 * **************************************/
+		getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		setContentView(R.layout.activity_main);
+		this.api = null;
+        new DownloadLoginTask().execute();
+		
+		/* *******************************
+		 * CREATION DE LA BARRE D'ONGLETS
+		 * *******************************/
+        fragList = new ArrayList<MainPagerFragment>();
 		adapter = new PagerAdapter(getSupportFragmentManager());
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
@@ -45,11 +65,61 @@ public class MainActivity extends FragmentActivity {
                             .setTabListener(tabListener));
         }
         
-       
+        
 	}
+	
+	public void setApi(SelectionTournoiAPI api){
+		this.api = api;
+	}
+	
+	public SelectionTournoiAPI getApi(){
+		return this.api;
+	}
+	
+	private class DownloadLoginTask extends AsyncTask<String, String, SelectionTournoiAPI> {
+		
+		protected void onPreExecute() {
+			setProgressBarIndeterminateVisibility(true);
+		}
+		
+		protected SelectionTournoiAPI doInBackground(String... params) {
+			SelectionTournoiAPI api = new SelectionTournoiAPI();
+			return api;
+		}
+		
+		protected void onProgressUpdate(String... s) {}
+		
+		protected void onPostExecute(SelectionTournoiAPI api) {
+			setProgressBarIndeterminateVisibility(false);
+			
+			// On s'assure que l'objet de retour existe
+			// et qu'il n'ait pas d'erreurs
+			if( api == null ) {
+				Toast.makeText(MainActivity.this, getText(R.string.api_vide), Toast.LENGTH_SHORT).show();
+				return;
+			}
+			
+			if( api.error != null ) {
+				Toast.makeText(MainActivity.this, api.error, Toast.LENGTH_SHORT).show();
+				return;
+			}
+			
+			setApi(api);
+			
+			
+			for(MainPagerFragment frg : fragList){
+				frg.setTourneyData();
+			}
+		}
+	}	
 	
 	private class PagerAdapter extends FragmentPagerAdapter{
 		
+		@Override
+		public long getItemId(int position) {
+			return super.getItemId(position);
+		}
+
 		public PagerAdapter(FragmentManager fm){
 			super(fm);
 		}
@@ -59,6 +129,7 @@ public class MainActivity extends FragmentActivity {
 			Bundle args = new Bundle();
 			args.putInt("id", i);
 			f.setArguments(args);
+			fragList.add(f);
 			return f;
 		}
 		
