@@ -3,7 +3,7 @@ package com.example.projetift2905;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.projetift2905.SelectionTournoiAPI.TourneyData;
 
@@ -29,7 +28,7 @@ public class MainPagerFragment extends Fragment{
         Bundle args = getArguments();
         
         this.dataList = new ArrayList<TourneyData>();
-        this.mainAdapter = new TourneyAdapter(this.getActivity().getApplicationContext(), this.dataList);
+        this.mainAdapter = new TourneyAdapter(rootView.getContext(), this.dataList);
         this.setTourneyData();
         mainList = (ListView) rootView.findViewById(R.id.listTournois);
         mainList.setAdapter(mainAdapter);
@@ -50,11 +49,11 @@ public class MainPagerFragment extends Fragment{
     
     private class MainListOnItemClick implements OnItemClickListener{
 		public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-			switch(position){
-			default:
-				Toast.makeText(getActivity().getApplicationContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-					
-			}
+			Log.d("DATA","click!");
+			Intent i = new Intent(getActivity().getApplicationContext(), DetailsTournoi.class);
+			i.putExtra("TourneyID", dataList.get(position).tourneyID);
+			startActivity(i);
 		}
 	}
+    
 }    
