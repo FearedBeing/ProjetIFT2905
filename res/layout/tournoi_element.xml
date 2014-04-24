@@ -9,23 +9,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/btn_star"/>
-
+<!--
     <ImageView
         android:id="@+id/ownedImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_launcher" />
-
+-->  
     <TextView
         android:id="@+id/nomTournoi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="nomTournoi" />
-
+<!--
     <ImageView
         android:id="@+id/LogoImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_launcher" />
+-->    
+
 
 </LinearLayout>
