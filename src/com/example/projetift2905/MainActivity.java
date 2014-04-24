@@ -1,6 +1,7 @@
 package com.example.projetift2905;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import android.app.ActionBar;
@@ -17,6 +18,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Toast;
+
+import android.view.View;
+ import android.view.View.OnClickListener;
+ import android.view.ViewGroup;
+ import android.widget.Button;
+ import android.content.Intent;
+
 
 public class MainActivity extends FragmentActivity {
 
@@ -64,7 +72,23 @@ public class MainActivity extends FragmentActivity {
                             .setText(adapter.getPageTitle(i))
                             .setTabListener(tabListener));
         }
-        
+                
+        //
+        ((Button)findViewById(R.id.buttonToDetailsTournoi)).setOnClickListener(new OnClickListener() {
+        			@Override
+        			public void onClick(View arg0) {
+        				Intent i = new Intent(MainActivity.this, DetailsTournoi.class);
+        				startActivity(i);
+        			}
+        		});		
+        		
+        		((Button)findViewById(R.id.buttonToCreerTournoi)).setOnClickListener(new OnClickListener() {
+        		@Override
+        			public void onClick(View arg0) {
+        				Intent i = new Intent(MainActivity.this, CreerTournoi.class);
+        				startActivity(i);
+        			}
+        		});	
         
 	}
 	
