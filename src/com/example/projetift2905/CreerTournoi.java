@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.os.Build;
 
@@ -36,20 +37,17 @@ public class CreerTournoi extends Activity {
 				
 				new BinaryBeastAPI("3ad9fe9061f6dfe3f0d7d495a3bf8611.533c43d1901466.70692389");					
 				Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();		//Pour verifier si la librairie
-																																	//est correctement referencee.				
 
-				//TouneyId xSC214041924
-				//xSC214041926
-				//BBRequest.tourneyDelete("xSC214041926").execute(new BBRequestHandler()	//pour supprimer le tournoi créer
+				//BBRequest.tourneyDelete("xSC214041926").execute(new BBRequestHandler()	//pour supprimer le tournoi créé
 				
-				BBRequest.tourneyCreate("testAPI2905").execute(new BBRequestHandler()						
+				EditText mEdit = (EditText)findViewById(R.id.editNomNewTournoi);
+				
+				String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.Popular&APIReturn=json&APIKey=4904a28e5c92f5919f7fcc2e716597e8.5350362f7b2669.06156210&Limit=25";
+							
+				BBRequest.tourneyCreate(mEdit.getText().toString()).execute(new BBRequestHandler()						
 				{
 					public void onResponse(BBResult result)
 					{
-						//Toast.makeText(getApplicationContext(), "onResponse", Toast.LENGTH_SHORT).show();
-						
-						//System.out.println("result API : "+result.result);
-
 						if(result.result == 200)
 						{
 							System.out.println("onResponse() tourneyCreate");

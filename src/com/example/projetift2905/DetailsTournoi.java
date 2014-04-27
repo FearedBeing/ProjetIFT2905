@@ -1,26 +1,28 @@
 package com.example.projetift2905;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.binarybeast.api.BBRequest;
-import com.binarybeast.api.BBRequestHandler;
-import com.binarybeast.api.BBResult;
 import com.binarybeast.api.BinaryBeastAPI;
 
 
@@ -32,76 +34,24 @@ public class DetailsTournoi extends Activity {
 	TextView name;
 	TextView game;
 	TextView type;
+	
+	LoadTourInfoById api;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_details_tournoi);
 		
-		
-		
-		((Button)findViewById(R.id.buttonTestAPI)).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-
-				
-				new BinaryBeastAPI("3ad9fe9061f6dfe3f0d7d495a3bf8611.533c43d1901466.70692389");	
-				
-				Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();		//Pour verifier si la librairie
-																																	//est correctement referencee.
-				
-				//Methode1			
-				BBRequest request = new BBRequest("Game.GameSearch.Search");
-				request.addArg("filter", "star");
-				request.execute(new BBRequestHandler(){
-						public void onResponse(BBResult result)
-						{
-							if(result.result == 200)
-							{
-								System.out.println("*Methode1: ");
-								
-								//Let's loop through the results
-								JSONArray games = result.optJSONArray("Games");
-								for(int x = 0; x < games.length(); x++)
-								{
-									JSONObject game = games.optJSONObject(x);
-									System.out.println("*"+x + ": " + game.optString("Game") + " (GameCode: " + game.optString("GameCode") + ")");
-									//System.out.println("// "+x + ": " + game.optString("TourneyID") + " (GameCode: " + game.optString("GameCode") + ")");
-								}
-							}
-							else System.err.println("Response Error: " + result.result);
-						}
-					});
-
-				//Methode2
-				BBRequest.gameSearch("star").execute(new BBRequestHandler()
-				{
-					public void onResponse(BBResult result)
-					{
-						//Toast.makeText(getApplicationContext(), "onResponse", Toast.LENGTH_SHORT).show();
-						
-						//System.out.println("result API : "+result.result);
-
-						if(result.result == 200)
-						{
-							System.out.println("Methode2: ");
-							
-							//Let's loop through the results
-							JSONArray games = result.optJSONArray("Games");
-							for(int x = 0; x < games.length(); x++)
-							{
-								
-								JSONObject game = games.optJSONObject(x);
-								System.out.println(x + ": " + game.optString("Game") + " (GameCode: " + game.optString("GameCode") + ")");
-							}
-						}
-						else System.err.println("Response Error: " + result.result);
-					}
-				});
-				
-
-			}
-		});	
+		/* **************************************
+		 * APPEL API POUR CREER LISTE DE TOURNOIS
+		 * **************************************/
+		//getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		//setContentView(R.layout.activity_main);
+		this.api = null;
+        new DownloadLoginTask().execute();	
+        
+        //new BinaryBeastAPI("3ad9fe9061f6dfe3f0d7d495a3bf8611.533c43d1901466.70692389");
+        //LoadTourInfoById info = new LoadTourInfoById("xSC214042710");
 		
 		name=(TextView)findViewById(R.id.textView5);	
 		name.setText(" ?");
@@ -118,11 +68,8 @@ public class DetailsTournoi extends Activity {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		
-		
-		
-				
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -159,6 +106,59 @@ public class DetailsTournoi extends Activity {
 			return rootView;
 		}
 	}
+	
+	public void setApi(LoadTourInfoById api){
+		this.api = api;
+		String title = this.api.infoForId.title;
+		name.setText(title);
+		String gameCode = this.api.infoForId.gameCode;
+		game.setText(gameCode);
+		int typeId = this.api.infoForId.typeId;
+		type.setText(String.valueOf(typeId));
+		
+		((TextView)findViewById(R.id.textView1)).setText(this.api.infoForId.tourneyID);
+		
+	}
+	
+	public LoadTourInfoById getApi(){
+		return this.api;
+	}
+	
+	
+	private class DownloadLoginTask extends AsyncTask<String, String, LoadTourInfoById> {
+		
+		protected void onPreExecute() {
+			setProgressBarIndeterminateVisibility(true);
+		}
+		
+		protected LoadTourInfoById doInBackground(String... params) {
+			//LoadTourInfoById api = new LoadTourInfoById("defaultString");	//identifiant du tournoi a afficher
+			String tId = getText(R.string.InfoTourneyId).toString();
+			LoadTourInfoById api = new LoadTourInfoById( tId );	//identifiant du tournoi a afficher
+			return api;
+		}
+		
+		protected void onProgressUpdate(String... s) {}
+		
+		protected void onPostExecute(LoadTourInfoById api) {
+			setProgressBarIndeterminateVisibility(false);
+			
+			// On s'assure que l'objet de retour existe
+			// et qu'il n'ait pas d'erreurs
+			if( api == null ) {
+				Toast.makeText(DetailsTournoi.this, getText(R.string.api_vide), Toast.LENGTH_SHORT).show();
+				return;
+			}
+			
+			if( api.error != null ) {
+				Toast.makeText(DetailsTournoi.this, api.error, Toast.LENGTH_SHORT).show();
+				return;
+			}
+			
+			setApi(api);
+		}
+	}	
+	
 	
 	
 	

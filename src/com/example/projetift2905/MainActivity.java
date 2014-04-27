@@ -42,7 +42,9 @@ public class MainActivity extends FragmentActivity {
 		getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_main);
 		this.api = null;
-        new DownloadLoginTask().execute();
+		
+        //pour accelerer le debug des autres partiesVVV
+		new DownloadLoginTask().execute();
 		
 		/* *******************************
 		 * CREATION DE LA BARRE D'ONGLETS

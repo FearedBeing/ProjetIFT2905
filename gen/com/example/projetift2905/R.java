@@ -29,16 +29,15 @@ public final class R {
     }
     public static final class id {
         public static final int ValiderCreerTournoi=0x7f090004;
-        public static final int action_settings=0x7f090012;
-        public static final int buttonTestAPI=0x7f09000b;
-        public static final int buttonToCreerTournoi=0x7f09000d;
-        public static final int buttonToDetailsTournoi=0x7f09000c;
+        public static final int action_settings=0x7f090011;
+        public static final int buttonToCreerTournoi=0x7f09000c;
+        public static final int buttonToDetailsTournoi=0x7f09000b;
         public static final int container=0x7f090000;
-        public static final int editText1=0x7f090002;
-        public static final int favoriButton=0x7f090010;
-        public static final int listTournois=0x7f09000f;
-        public static final int nomTournoi=0x7f090011;
-        public static final int pager=0x7f09000e;
+        public static final int editNomNewTournoi=0x7f090002;
+        public static final int favoriButton=0x7f09000f;
+        public static final int listTournois=0x7f09000e;
+        public static final int nomTournoi=0x7f090010;
+        public static final int pager=0x7f09000d;
         public static final int spinner1=0x7f090003;
         public static final int textView1=0x7f090005;
         public static final int textView2=0x7f090001;
@@ -64,7 +63,7 @@ public final class R {
     }
     public static final class string {
         public static final int DOTA2=0x7f05000b;
-        public static final int DetailsTournoi_Id=0x7f050008;
+        public static final int InfoTourneyId=0x7f050008;
         public static final int LoL=0x7f05000a;
         public static final int action_settings=0x7f050001;
         public static final int api_vide=0x7f050006;
