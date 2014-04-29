@@ -3,6 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/BackGroundColor"
     tools:context="com.example.projetift2905.CreerTournoi"
     tools:ignore="MergeRootFrame" >
 
@@ -23,11 +24,12 @@
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/editNomNewTournoi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10" >
+                android:ems="10"
+                android:text="defaultName" >
 
                 <requestFocus />
             </EditText>

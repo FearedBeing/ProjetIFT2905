@@ -1,6 +1,7 @@
 package com.example.projetift2905;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import android.app.ActionBar;
@@ -18,6 +19,13 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Toast;
 
+import android.view.View;
+ import android.view.View.OnClickListener;
+ import android.view.ViewGroup;
+ import android.widget.Button;
+ import android.content.Intent;
+
+
 public class MainActivity extends FragmentActivity {
 
 	PagerAdapter adapter;
@@ -34,7 +42,9 @@ public class MainActivity extends FragmentActivity {
 		getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_main);
 		this.api = null;
-        new DownloadLoginTask().execute();
+		
+        //pour accelerer le debug des autres partiesVVV
+		new DownloadLoginTask().execute();
 		
 		/* *******************************
 		 * CREATION DE LA BARRE D'ONGLETS
@@ -64,7 +74,23 @@ public class MainActivity extends FragmentActivity {
                             .setText(adapter.getPageTitle(i))
                             .setTabListener(tabListener));
         }
-        
+                
+        //
+        ((Button)findViewById(R.id.buttonToDetailsTournoi)).setOnClickListener(new OnClickListener() {
+        			@Override
+        			public void onClick(View arg0) {
+        				Intent i = new Intent(MainActivity.this, DetailsTournoi.class);
+        				startActivity(i);
+        			}
+        		});		
+        		
+        		((Button)findViewById(R.id.buttonToCreerTournoi)).setOnClickListener(new OnClickListener() {
+        		@Override
+        			public void onClick(View arg0) {
+        				Intent i = new Intent(MainActivity.this, CreerTournoi.class);
+        				startActivity(i);
+        			}
+        		});	
         
 	}
 	

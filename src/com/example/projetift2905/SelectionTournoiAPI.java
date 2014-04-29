@@ -40,7 +40,7 @@ public class SelectionTournoiAPI {
 	SelectionTournoiAPI(){
 		error = null;
 		dataList = new ArrayList<TourneyData>();
-		String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.Popular&APIReturn=json&APIKey=4904a28e5c92f5919f7fcc2e716597e8.5350362f7b2669.06156210&Limit=25";
+		String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.Popular&APIReturn=json&APIKey=3ad9fe9061f6dfe3f0d7d495a3bf8611.533c43d1901466.70692389&Limit=25";
 		
 		try{
 			
@@ -89,3 +89,4 @@ public class SelectionTournoiAPI {
 	
 
 }
+
