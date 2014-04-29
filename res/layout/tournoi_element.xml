@@ -2,8 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" >
-
+    android:descendantFocusability="blocksDescendants" 
+    android:orientation="horizontal" > 
+    
+	<!-- android:descendantFocusability="blocksDescendants" 
+ 	Utile pour pouvoir clicker sur les items du listView.
+ 	Voir http://stackoverflow.com/questions/7645880/listview-with-onitemclicklistener-android?rq=1 -->
+    
+    
     <ImageButton
         android:id="@+id/favoriButton"
         android:layout_width="wrap_content"
@@ -12,20 +18,24 @@
 
     <ImageView
         android:id="@+id/ownedImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/editable_tourney" />
 
     <TextView
         android:id="@+id/nomTournoi"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical|center_horizontal|center"
+        android:layout_weight="1"
         android:text="nomTournoi" />
 
     <ImageView
         android:id="@+id/LogoImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:adjustViewBounds="true"
+        android:scaleType="center" />
 
 </LinearLayout>

@@ -30,9 +30,9 @@ public class MainPagerFragment extends Fragment{
         this.dataList = new ArrayList<TourneyData>();
         this.mainAdapter = new TourneyAdapter(rootView.getContext(), this.dataList);
         this.setTourneyData();
-        mainList = (ListView) rootView.findViewById(R.id.listTournois);
-        mainList.setAdapter(mainAdapter);
-        mainList.setOnItemClickListener(new MainListOnItemClick());
+        this.mainList = (ListView) rootView.findViewById(R.id.listTournois);
+        this.mainList.setAdapter(mainAdapter);
+        this.mainList.setOnItemClickListener(new MainListOnItemClick());
         
         return rootView;
     }

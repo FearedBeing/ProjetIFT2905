@@ -3,11 +3,17 @@ package com.example.projetift2905;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.projetift2905.SelectionTournoiAPI.TourneyData;
@@ -56,6 +62,8 @@ public class TourneyAdapter extends BaseAdapter{
 		TextView nomTournoi = (TextView) view.findViewById(R.id.nomTournoi);
 		nomTournoi.setText(tourneyData.title);
 		
+		ImageView gameLogo = (ImageView) view.findViewById(R.id.LogoImage);
+		gameLogo.setBackgroundDrawable(tourneyData.gameLogo); // voir http://stackoverflow.com/questions/5454491/what-is-the-difference-between-src-and-background-of-imageview
 		// DOIT AJOUTER AVEC VIEWS DU LAYOUT
 		
 		return view;
