@@ -32,7 +32,7 @@ public class CreateTournoiAPI {
 			this.tourneyID = tourneyID;
 			this.title = title;
 			this.gameCode = gameCode;
-			this.typeId = typeId;
+			this.typeId = typeId;			
 			
 			//this.gameLogo = gameLogo;
 		}
@@ -40,17 +40,26 @@ public class CreateTournoiAPI {
 	
 	CreateTournoiAPI(String tourneyId, int typeID, String title){
 		
-		
-		
 		error = null;
+		
 		//TourneyData infoTournoi;
 		String apiCallp1 = "https://api.binarybeast.com/?APIService=Tourney.TourneyCreate.Create&";
 		String apiCallp2 = "APIReturn=json&APIKey=3ad9fe9061f6dfe3f0d7d495a3bf8611.533c43d1901466.70692389&";
+		
 		String argTitle = "Title=";
 		argTitle=argTitle.concat(title);
 		argTitle=argTitle.concat("&");
+		
 		String argTypeID = "TypeID=";
 		argTypeID=argTypeID.concat("0");
+		//argTypeID=argTypeID.concat("&");
+		
+		/*String argTypeID = "Game=";
+		argTypeID=argTypeID.concat("0");
+		argTypeID=argTypeID.concat("&");
+		
+		String argTypeID = "TypeID=";
+		argTypeID=argTypeID.concat("0");*/
 		//argTypeID=argTypeID.concat("&");
 		
 		//String apiCall = apiCallp1+argTitle+argTypeID+apiCallp2;
@@ -64,35 +73,8 @@ public class CreateTournoiAPI {
 			
 			HttpEntity page = getHttp(apiCall);
 			JSONObject js = new JSONObject(EntityUtils.toString(page, HTTP.UTF_8));
-			//JSONObject info = js.getJSONObject("TourneyInfo");
+			
 			String tourneyIdd = js.getString("TourneyID");
-			
-			System.out.println("****");	
-			/*String title = info.getString("Title");
-			String gameCode = info.getString("Game");
-			int typeId = info.getInt("TypeID");
-			this.infoForId = new TourneyData(tourneyId, title, gameCode, typeId);
-			*/
-			
-			System.out.println("tourneyId: "+tourneyIdd);
-			
-			/*
-			JSONArray list = js.getJSONArray("List");
-			
-			for(int index=0; index<list.length(); index++){
-				JSONObject element = list.getJSONObject(index);
-				String tourneyID = element.getString("TourneyID");
-				String title = element.getString("Title");
-				String gameIconURL = element.getString("GameIcon");
-				Log.d("DATA", tourneyID);
-				Log.d("DATA", title);
-				Log.d("DATA", gameIconURL);
-				Drawable gameLogo = null;
-				if( !gameIconURL.equals("null") ) {
-					gameLogo = loadHttpImage(gameIconURL);
-				}
-				dataList.add(new TourneyData(tourneyID, title, gameLogo));
-			}*/
 			
 		} catch (ClientProtocolException e) {
 			error = "Erreur HTTP (protocole) :"+e.getMessage();

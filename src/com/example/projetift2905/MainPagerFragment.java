@@ -51,6 +51,7 @@ public class MainPagerFragment extends Fragment{
 		public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
 			Log.d("DATA","click!");
 			Intent i = new Intent(getActivity().getApplicationContext(), DetailsTournoi.class);
+			System.out.println("dataList.get(position).tourneyID: "+dataList.get(position).tourneyID);
 			i.putExtra("TourneyID", dataList.get(position).tourneyID);
 			startActivity(i);
 		}

@@ -32,21 +32,20 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int LogoImage=0x7f0a001b;
+        public static final int LogoImage=0x7f0a001a;
         public static final int ValiderCreerTournoi=0x7f0a0004;
-        public static final int action_settings=0x7f0a001c;
+        public static final int action_settings=0x7f0a001b;
         public static final int button1=0x7f0a0013;
         public static final int button2=0x7f0a0012;
         public static final int buttonToCreerTournoi=0x7f0a0015;
-        public static final int buttonToDetailsTournoi=0x7f0a0014;
         public static final int container=0x7f0a0000;
         public static final int editNomNewTournoi=0x7f0a0002;
-        public static final int favoriButton=0x7f0a0018;
+        public static final int favoriButton=0x7f0a0017;
         public static final int imageView1=0x7f0a0006;
-        public static final int listTournois=0x7f0a0017;
-        public static final int nomTournoi=0x7f0a001a;
-        public static final int ownedImage=0x7f0a0019;
-        public static final int pager=0x7f0a0016;
+        public static final int listTournois=0x7f0a0016;
+        public static final int nomTournoi=0x7f0a0019;
+        public static final int ownedImage=0x7f0a0018;
+        public static final int pager=0x7f0a0014;
         public static final int spinner1=0x7f0a0003;
         public static final int textView1=0x7f0a0005;
         public static final int textView10=0x7f0a000e;

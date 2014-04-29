@@ -8,28 +8,28 @@
     tools:context="com.example.projetift2905.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-     <Button
-         android:id="@+id/buttonToDetailsTournoi"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_gravity="bottom|center_vertical"
-         android:text="TestDetailTournoi" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-     <Button
-         android:id="@+id/buttonToCreerTournoi"
-         style="?android:attr/buttonStyleSmall"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="CreerTournoi" />
+        <android.support.v4.view.ViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/pager"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" >
 
-     <android.support.v4.view.ViewPager
-         xmlns:android="http://schemas.android.com/apk/res/android"
-         android:id="@+id/pager"
-         android:layout_width="wrap_content"
-         android:layout_height="348dp"
-         android:layout_marginTop="45dp" >
+        </android.support.v4.view.ViewPager>
 
-     </android.support.v4.view.ViewPager>
+        <Button
+            android:id="@+id/buttonToCreerTournoi"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CreerTournoi" />
+
+    </LinearLayout>
 
 </FrameLayout>
 

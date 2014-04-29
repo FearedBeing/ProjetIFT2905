@@ -75,14 +75,6 @@ public class MainActivity extends FragmentActivity {
                             .setTabListener(tabListener));
         }
                 
-        //
-        ((Button)findViewById(R.id.buttonToDetailsTournoi)).setOnClickListener(new OnClickListener() {
-        			@Override
-        			public void onClick(View arg0) {
-        				Intent i = new Intent(MainActivity.this, DetailsTournoi.class);
-        				startActivity(i);
-        			}
-        		});		
         		
         		((Button)findViewById(R.id.buttonToCreerTournoi)).setOnClickListener(new OnClickListener() {
         		@Override

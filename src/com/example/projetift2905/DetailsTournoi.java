@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -27,49 +28,52 @@ import com.binarybeast.api.BinaryBeastAPI;
 
 
 public class DetailsTournoi extends Activity {
-	
-	
+		
 	//informations a charger
 	TextView id;
 	TextView name;
 	TextView game;
 	TextView type;
 	
-	LoadTourInfoById api;
+	LoadTourInfoById api;	
+	String TourneyID="0";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_details_tournoi);
+		super.onCreate(savedInstanceState);		
 		
 		/* **************************************
 		 * APPEL API POUR CREER LISTE DE TOURNOIS
 		 * **************************************/
-		//getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		//setContentView(R.layout.activity_main);
-		this.api = null;
+		getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		
+		
+        setContentView(R.layout.activity_details_tournoi);
+        
+        //System.out.println("avant");
+        Intent intent = getIntent();
+        TourneyID = intent.getStringExtra("TourneyID");
+        System.out.println("TourneyID: "+TourneyID);
+        
+        this.api = null;
         new DownloadLoginTask().execute();	
         
-        //new BinaryBeastAPI("3ad9fe9061f6dfe3f0d7d495a3bf8611.533c43d1901466.70692389");
-        //LoadTourInfoById info = new LoadTourInfoById("xSC214042710");
-		
+        
 		name=(TextView)findViewById(R.id.textView5);	
-		name.setText(" ?");
 		game=(TextView)findViewById(R.id.textView6);	
-		game.setText(" ?");
 		type=(TextView)findViewById(R.id.textView7);	
-		type.setText(" ?");
-
-		
-		//new DownloadLoginTask().execute();	//appel a l'API
-
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
 		
 	}
 	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		Intent intent = getIntent();
+        TourneyID = intent.getStringExtra("TourneyID");
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -84,29 +88,12 @@ public class DetailsTournoi extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.action_settings){
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_details_tournoi,
-					container, false);
-			return rootView;
-		}
-	}
-	
 	public void setApi(LoadTourInfoById api){
 		this.api = api;
 		String title = this.api.infoForId.title;
@@ -124,7 +111,6 @@ public class DetailsTournoi extends Activity {
 		return this.api;
 	}
 	
-	
 	private class DownloadLoginTask extends AsyncTask<String, String, LoadTourInfoById> {
 		
 		protected void onPreExecute() {
@@ -133,8 +119,22 @@ public class DetailsTournoi extends Activity {
 		
 		protected LoadTourInfoById doInBackground(String... params) {
 			//LoadTourInfoById api = new LoadTourInfoById("defaultString");	//identifiant du tournoi a afficher
-			String tId = getText(R.string.InfoTourneyId).toString();
-			LoadTourInfoById api = new LoadTourInfoById( tId );	//identifiant du tournoi a afficher
+			String tId; 
+			
+			if(TourneyID!=null){
+				System.out.println("(TourneyID!=null)");				
+				tId = TourneyID;
+				System.out.println("*-*-TourneyID: "+TourneyID);
+			}
+			else{
+				System.out.println("(TourneyID==null)");
+				tId = getText(R.string.InfoTourneyId).toString();
+								
+			}
+			
+			System.out.println("tourney//Id: "+tId);//0
+			LoadTourInfoById api = new LoadTourInfoById(tId);	 //identifiant du tournoi a afficher
+			
 			return api;
 		}
 		
@@ -158,8 +158,5 @@ public class DetailsTournoi extends Activity {
 			setApi(api);
 		}
 	}	
-	
-	
-	
-	
+		
 }
