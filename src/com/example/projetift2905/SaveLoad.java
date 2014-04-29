@@ -1,20 +1,12 @@
 package com.example.projetift2905;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
-import android.os.Bundle;
-import android.view.View;
 
 
 public class SaveLoad{
-
-	//SharedPreferences sharedPref = getSharedPreferences("com.example.projetift2905.saves", Context.MODE_PRIVATE);
 
     public static final String FAVORIS = "favorites";
     private static final String APP_SHARED_PREFS = SaveLoad.class.getSimpleName();
@@ -91,6 +83,8 @@ public class SaveLoad{
 	public void RemoveFavorite(String fav){
 		
 		String[] listein = GetFavorites();
+		
+		// "Limite artificielle... on verra pour la suite."
 		String[] listeout = new String[50];
 		
 		for (int x = listein.length - 1; x >= 0; x--){
