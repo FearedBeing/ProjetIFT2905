@@ -4,10 +4,12 @@
 
 ##Main activity##
 ###1.Fait:###
->> -affichage des 25 tournois les plus populaires.
+>> -Affichage des tournois
+>>- Filtre par nom et jeu
 
 ###2.A faire:###
->>-clic sur un tournoi (changer R.strings.InfoTourneyId a l'identifiant du tournoi cliqué et lancer l'activité detaiTournoi
+>>-Afficher correctement les favoris et les tournois modifiables
+>>-Filtrer par favoris et par modifiables
 
 
 ##Detail tournoi##
