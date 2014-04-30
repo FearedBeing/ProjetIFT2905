@@ -19,7 +19,7 @@
         android:id="@+id/ownedImage"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/editable_tourney" />
+        android:src="@drawable/owner_imageview" />
     <TextView
         android:id="@+id/nomTournoi"
         android:layout_width="wrap_content"

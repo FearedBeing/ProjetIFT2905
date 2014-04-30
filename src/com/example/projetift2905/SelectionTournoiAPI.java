@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 public class SelectionTournoiAPI {
 	
@@ -27,39 +28,59 @@ public class SelectionTournoiAPI {
 	public String error;
 	
 	public class TourneyData{
+		public final boolean owner;
 		public final String title, tourneyID, game;
 		public final Drawable gameLogo;
 		
-		public TourneyData(String tourneyID, String title, String game, Drawable gameLogo){
+		public TourneyData(String tourneyID, String title, String game, boolean owner, Drawable gameLogo){
 			this.tourneyID = tourneyID;
 			this.title = title;
 			this.game = game;
 			this.gameLogo = gameLogo;
+			this.owner = owner;
 		}
 	}
 	
 	SelectionTournoiAPI(Context ctx){
 		error = null;
 		dataList = new ArrayList<TourneyData>();
-		String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.Popular&APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY) + "&Limit=25";
 		
 		try{
-			
+			// TOURNOIS RECENTS
+			String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.Popular&APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY) + "&Limit=25";
 			HttpEntity page = getHttp(apiCall);
 			JSONObject js = new JSONObject(EntityUtils.toString(page, HTTP.UTF_8));
 			JSONArray list = js.getJSONArray("List");
-			
+			JSONObject element;
 			for(int index=0; index<list.length(); index++){
-				JSONObject element = list.getJSONObject(index);
-				String tourneyID = element.getString("TourneyID");
-				String title = element.getString("Title");
-				String gameIconURL = element.getString("GameIcon");
-				String game = element.getString("Game");
-				Drawable gameLogo = null;
-				if( !gameIconURL.equals("null") ) {
-					gameLogo = loadHttpImage(gameIconURL);
+				element = list.getJSONObject(index);
+				dataList.add(getTourneyData(element, false));
+			}
+			
+			// TOURNOIS FAVORIS
+			for(String fav: (new SaveLoad(ctx)).getFavorites()){
+				if(fav != null){
+					apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyLoad.Info&APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY) + "&TourneyID=" + fav;
+					page = getHttp(apiCall);
+					js = new JSONObject(EntityUtils.toString(page, HTTP.UTF_8));
+					element = js.getJSONObject("TourneyInfo");
+					if(!containsTourney(dataList, getTourneyData(element, false))) dataList.add(getTourneyData(element, false)); // Ajouter seulement si pas un doublon
 				}
-				dataList.add(new TourneyData(tourneyID, title, game, gameLogo));
+			}
+			
+			// TOURNOIS PROPRIETAIRES
+			apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.My&APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY);
+			page = getHttp(apiCall);
+			js = new JSONObject(EntityUtils.toString(page, HTTP.UTF_8));
+			JSONObject creator = js.getJSONObject("Creator");
+			list = creator.getJSONArray("List");
+			for(int index=0; index<list.length(); index++){
+				element = list.getJSONObject(index);
+				TourneyData tourney = getTourneyData(element, true);
+				if(containsTourney(dataList, tourney)){
+					dataList.remove(getTourneyById(dataList, tourney.tourneyID));  // Si existe deja on retire (car celui dans dataList a été initialisé avec ownership == false
+				}
+				dataList.add(tourney);
 			}
 			
 		} catch (ClientProtocolException e) {
@@ -84,6 +105,51 @@ public class SelectionTournoiAPI {
 		InputStream is = getHttp(url).getContent();
 		Drawable d = Drawable.createFromStream(is, "src");
 		return d;
+	}
+	
+	private TourneyData getTourneyData(JSONObject element, boolean ownership){
+		try{
+			String tourneyID = element.getString("TourneyID");
+			String title = element.getString("Title");
+			String gameIconURL = element.getString("GameIcon");
+			String game = element.getString("Game");
+			Drawable gameLogo = null;
+			if( !gameIconURL.equals("null") ) {
+				gameLogo = loadHttpImage(gameIconURL);
+			}
+			return new TourneyData(tourneyID, title, game, ownership, gameLogo);
+		} catch (ClientProtocolException e) {
+			error = "[SelectionTournoiAPI] Erreur HTTP (protocole) :"+e.getMessage();
+		} catch (IOException e) {
+			error = "[SelectionTournoiAPI] Erreur HTTP (IO) :"+e.getMessage();
+		} catch (ParseException e) {
+			error = "[SelectionTournoiAPI] Erreur JSON (parse) :"+e.getMessage();
+		} catch (JSONException e) {
+			error = "[SelectionTournoiAPI] Erreur JSON :"+e.getMessage();
+		}
+		
+		return null;
+	}
+	
+	private boolean containsTourney(List<TourneyData> list, TourneyData tourney){
+		String newID = tourney.tourneyID;
+		String existingID;
+		for(TourneyData data: list){
+			existingID = data.tourneyID;
+			if(newID.equals(existingID)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private TourneyData getTourneyById(List<TourneyData> list, String tourneyID){
+		for(TourneyData data: list){
+			if(data.tourneyID.equals(tourneyID)){
+				return data;
+			}
+		}
+		return null;
 	}
 	
 

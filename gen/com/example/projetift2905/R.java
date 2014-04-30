@@ -31,6 +31,9 @@ public final class R {
         public static final int editable_tourney=0x7f020000;
         public static final int favori_button=0x7f020001;
         public static final int ic_launcher=0x7f020002;
+        public static final int notowned_tourney=0x7f020003;
+        public static final int owned_tourney=0x7f020004;
+        public static final int owner_imageview=0x7f020005;
     }
     public static final class id {
         public static final int LogoImage=0x7f0a0022;
@@ -86,17 +89,18 @@ public final class R {
     }
     public static final class string {
         public static final int API_KEY=0x7f060002;
-        public static final int DOTA2=0x7f06000c;
-        public static final int InfoTourneyId=0x7f060009;
-        public static final int LoL=0x7f06000b;
+        public static final int DOTA2=0x7f06000d;
+        public static final int InfoTourneyId=0x7f06000a;
+        public static final int LoL=0x7f06000c;
         public static final int action_settings=0x7f060001;
         public static final int api_vide=0x7f060007;
         public static final int app_name=0x7f060000;
+        public static final int filtrer=0x7f060008;
         /**  Ressources pour MainActivity 
          */
         public static final int title_activity_=0x7f060003;
-        public static final int title_activity_creer_tournoi=0x7f06000a;
-        public static final int title_activity_details_tournoi=0x7f060008;
+        public static final int title_activity_creer_tournoi=0x7f06000b;
+        public static final int title_activity_details_tournoi=0x7f060009;
         public static final int title_section1=0x7f060004;
         public static final int title_section2=0x7f060005;
         public static final int title_section3=0x7f060006;

@@ -207,10 +207,10 @@ public class MainActivity extends FragmentActivity {
 			
 			setApi(api);
 			
-			
 			for(MainPagerFragment frg : fragList){
 				frg.setTourneyData();
 			}
+			
 		}
 	}	
 	

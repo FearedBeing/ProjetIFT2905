@@ -26,8 +26,11 @@ public class MainPagerFragment extends Fragment{
     	View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         Bundle args = getArguments();
         
+        boolean favoriOnly = args.getInt("id") == 1;
+        boolean ownedOnly = args.getInt("id") == 2; 
+        
         this.dataList = new ArrayList<TourneyData>();
-        this.mainAdapter = new TourneyAdapter(rootView.getContext(), this.dataList, false, false, ((MainActivity)getActivity()));
+        this.mainAdapter = new TourneyAdapter(rootView.getContext(), this.dataList, favoriOnly, ownedOnly, ((MainActivity)getActivity()));
         this.setTourneyData();
         this.mainList = (ListView) rootView.findViewById(R.id.listTournois);
         this.mainList.setAdapter(mainAdapter);

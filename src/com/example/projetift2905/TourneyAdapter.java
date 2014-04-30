@@ -87,6 +87,9 @@ public class TourneyAdapter extends BaseAdapter{
 				}
 			});
 			
+			ImageView owner = (ImageView) view.findViewById(R.id.ownedImage);
+			owner.setSelected(tourneyData.owner);
+			
 			
 		}else{
 			// ELEMENT INVISIBLE
@@ -100,6 +103,12 @@ public class TourneyAdapter extends BaseAdapter{
 	private boolean checkIfVisible(TourneyData data){
 		if(!data.title.contains(filtres[0])) return false;
 		if(!data.game.contains(filtres[1])) return false;
+		if(this.favoriOnly){
+			if(!new SaveLoad(this.context).hasFavorite(data.tourneyID)) return false;	
+		}
+		if(this.ownedOnly){
+			if(!data.owner) return false;
+		}
 		return true;
 	}
 	

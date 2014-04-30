@@ -11,6 +11,7 @@
     <string name="title_section2">Favoris</string>
     <string name="title_section3">Mes tournois</string>
     <string name="api_vide">API Vide</string>
+    <string name="filtrer">Filtrer</string>
     
 	<string name="title_activity_details_tournoi">DetailsTournoi</string>
 	<string name="InfoTourneyId">xSC214042710</string>

@@ -66,6 +66,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="25dp"
-        android:text="Button" />
+        android:text="@string/filtrer" />
 
 </LinearLayout>
