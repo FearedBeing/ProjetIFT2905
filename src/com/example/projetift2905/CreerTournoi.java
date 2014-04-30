@@ -42,7 +42,7 @@ public class CreerTournoi extends Activity {
 			@Override
 			public void onClick(View arg0) {								
 				
-				new BinaryBeastAPI(R.string.API_KEY + "");					
+				new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");					
 				Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();		//Pour verifier si la librairie
 
 				/* **************************************
@@ -116,7 +116,7 @@ public class CreerTournoi extends Activity {
 			
 			System.out.println("editNomNewTournoi: "+nom);
 			
-			CreateTournoiAPI api = new CreateTournoiAPI(tId, 2, nom);	//identifiant du tournoi a afficher
+			CreateTournoiAPI api = new CreateTournoiAPI(getApplicationContext(), tId, 2, nom);	//identifiant du tournoi a afficher
 			return api;
 		}
 		

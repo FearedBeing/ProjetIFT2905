@@ -18,8 +18,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 public class SelectionTournoiAPI {
 	
@@ -38,10 +38,10 @@ public class SelectionTournoiAPI {
 		}
 	}
 	
-	SelectionTournoiAPI(){
+	SelectionTournoiAPI(Context ctx){
 		error = null;
 		dataList = new ArrayList<TourneyData>();
-		String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.Popular&APIReturn=json&APIKey=" + R.string.API_KEY + "&Limit=25";
+		String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.Popular&APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY) + "&Limit=25";
 		
 		try{
 			
@@ -63,13 +63,13 @@ public class SelectionTournoiAPI {
 			}
 			
 		} catch (ClientProtocolException e) {
-			error = "Erreur HTTP (protocole) :"+e.getMessage();
+			error = "[SelectionTournoiAPI] Erreur HTTP (protocole) :"+e.getMessage();
 		} catch (IOException e) {
-			error = "Erreur HTTP (IO) :"+e.getMessage();
+			error = "[SelectionTournoiAPI] Erreur HTTP (IO) :"+e.getMessage();
 		} catch (ParseException e) {
-			error = "Erreur JSON (parse) :"+e.getMessage();
+			error = "[SelectionTournoiAPI] Erreur JSON (parse) :"+e.getMessage();
 		} catch (JSONException e) {
-			error = "Erreur JSON :"+e.getMessage();
+			error = "[SelectionTournoiAPI] Erreur JSON :"+e.getMessage();
 		}	
 	}
 	

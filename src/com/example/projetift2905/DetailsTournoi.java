@@ -133,7 +133,7 @@ public class DetailsTournoi extends Activity {
 			}
 			
 			System.out.println("tourney//Id: "+tId);//0
-			LoadTourInfoById api = new LoadTourInfoById(tId);	 //identifiant du tournoi a afficher
+			LoadTourInfoById api = new LoadTourInfoById(getApplicationContext(), tId);	 //identifiant du tournoi a afficher
 			
 			return api;
 		}

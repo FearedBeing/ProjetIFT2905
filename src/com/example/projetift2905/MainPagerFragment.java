@@ -6,7 +6,6 @@ import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +52,6 @@ public class MainPagerFragment extends Fragment{
     
     private class MainListOnItemClick implements OnItemClickListener{
 		public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-			Log.d("DATA","click!");
 			Intent i = new Intent(getActivity().getApplicationContext(), DetailsTournoi.class);
 			System.out.println("dataList.get(position).tourneyID: "+dataList.get(position).tourneyID);
 			i.putExtra("TourneyID", dataList.get(position).tourneyID);

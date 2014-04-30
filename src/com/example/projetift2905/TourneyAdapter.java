@@ -3,16 +3,12 @@ package com.example.projetift2905;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,18 +53,39 @@ public class TourneyAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
-		TourneyData tourneyData = data.get(position);
+		final TourneyData tourneyData = data.get(position); // final pour acceder dans les classes internes
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
 		if(checkIfVisible(tourneyData)){
 			// ELEMENT VISIBLE
 			view = inflater.inflate(R.layout.tournoi_element, parent, false);
+			final SaveLoad favorites = new SaveLoad(this.context); // final pour acceder dans les classes internes
+			
 			
 			TextView nomTournoi = (TextView) view.findViewById(R.id.nomTournoi);
 			nomTournoi.setText(tourneyData.title);
 			
 			ImageView gameLogo = (ImageView) view.findViewById(R.id.LogoImage);
 			gameLogo.setBackgroundDrawable(tourneyData.gameLogo); // voir http://stackoverflow.com/questions/5454491/what-is-the-difference-between-src-and-background-of-imageview
-			// DOIT AJOUTER AVEC VIEWS DU LAYOUT
+
+			ImageButton buttonFavori = (ImageButton) view.findViewById(R.id.favoriButton);
+			if(favorites.hasFavorite(tourneyData.tourneyID)) buttonFavori.setEnabled(true);
+			buttonFavori.setOnClickListener(new OnClickListener(){
+				public void onClick(View button){
+					if(button.isSelected()){
+						// TOGGLE OFF
+						button.setSelected(false);
+						favorites.removeFavorite(tourneyData.tourneyID);
+						notifyDataSetChanged();
+					}else{
+						// TOGGLE ON
+						button.setSelected(true);
+						favorites.addFavorite(tourneyData.tourneyID);
+						notifyDataSetChanged();
+					}
+				}
+			});
+			
 			
 		}else{
 			// ELEMENT INVISIBLE

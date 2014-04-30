@@ -15,6 +15,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 
@@ -38,13 +39,13 @@ public class CreateTournoiAPI {
 		}
 	}
 	
-	CreateTournoiAPI(String tourneyId, int typeID, String title){
+	CreateTournoiAPI(Context ctx, String tourneyId, int typeID, String title){
 		
 		error = null;
 		
 		//TourneyData infoTournoi;
 		String apiCallp1 = "https://api.binarybeast.com/?APIService=Tourney.TourneyCreate.Create&";
-		String apiCallp2 = "APIReturn=json&APIKey=" + R.string.API_KEY + "&";
+		String apiCallp2 = "APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY) + "&";
 		
 		String argTitle = "Title=";
 		argTitle=argTitle.concat(title);

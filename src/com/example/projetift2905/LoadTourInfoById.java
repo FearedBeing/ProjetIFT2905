@@ -2,8 +2,6 @@ package com.example.projetift2905;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -14,12 +12,11 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 
 public class LoadTourInfoById {
@@ -40,11 +37,11 @@ public class LoadTourInfoById {
 		}
 	}
 	
-	LoadTourInfoById(String tourneyId){
+	LoadTourInfoById(Context ctx, String tourneyId){
 		error = null;
 		TourneyData infoTournoi;
 		String apiCall1 = "https://api.binarybeast.com/?APIService=Tourney.TourneyLoad.Info&TourneyID=";
-		String apiCall2 = "&APIReturn=json&APIKey=" + R.string.API_KEY;
+		String apiCall2 = "&APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY);
 		String apiCall = apiCall1.concat(tourneyId);
 		apiCall = apiCall.concat(apiCall2);
 		System.out.println("LOADTOURNOIINFO/ apiCall: "+apiCall);		

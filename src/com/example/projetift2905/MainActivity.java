@@ -177,7 +177,7 @@ public class MainActivity extends FragmentActivity {
 		}
 		
 		protected SelectionTournoiAPI doInBackground(String... params) {
-			SelectionTournoiAPI api = new SelectionTournoiAPI();
+			SelectionTournoiAPI api = new SelectionTournoiAPI(getApplicationContext());
 			return api;
 		}
 		

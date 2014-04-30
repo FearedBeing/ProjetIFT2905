@@ -1,8 +1,10 @@
 package com.example.projetift2905;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 
@@ -94,6 +96,15 @@ public class SaveLoad{
 		
 		setFavorites(listeout);
 		
+	}
+	
+	public boolean hasFavorite(String tourneyID){
+		ArrayList<String> favorites = new ArrayList<String>();
+		for(String f: this.getFavorites()){
+			favorites.add(f);
+		}
+		
+		return favorites.contains(tourneyID);
 	}
 
 }
