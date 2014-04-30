@@ -75,7 +75,7 @@ public class TourneyAdapter extends BaseAdapter{
 			view = inflater.inflate(R.layout.null_layout, parent, false);
 		}
 		
-		return view;
+		return view; 
 		
 	}
 	
