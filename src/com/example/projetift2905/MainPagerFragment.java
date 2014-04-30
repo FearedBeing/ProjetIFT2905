@@ -27,13 +27,17 @@ public class MainPagerFragment extends Fragment{
         Bundle args = getArguments();
         
         this.dataList = new ArrayList<TourneyData>();
-        this.mainAdapter = new TourneyAdapter(rootView.getContext(), this.dataList, false, false, ((MainActivity)getActivity()).getFiltres());
+        this.mainAdapter = new TourneyAdapter(rootView.getContext(), this.dataList, false, false, ((MainActivity)getActivity()));
         this.setTourneyData();
         this.mainList = (ListView) rootView.findViewById(R.id.listTournois);
         this.mainList.setAdapter(mainAdapter);
         this.mainList.setOnItemClickListener(new MainListOnItemClick());
         
         return rootView;
+    }
+    
+    public void notifyDataSetChanged(){
+    	this.mainAdapter.notifyDataSetChanged();
     }
     
     public void setFiltres(String[] filtres){

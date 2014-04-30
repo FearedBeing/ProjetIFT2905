@@ -20,13 +20,15 @@ public class TourneyAdapter extends BaseAdapter{
 	private List<TourneyData> data;
 	boolean favoriOnly, ownedOnly;
 	String[] filtres;
+	MainActivity activity;
 	
-	public TourneyAdapter(Context context, List<TourneyData> data, boolean favoriOnly, boolean ownedOnly, String[] filtres){
+	public TourneyAdapter(Context context, List<TourneyData> data, boolean favoriOnly, boolean ownedOnly, MainActivity activity){
 		this.context = context;
 		this.data = data;
 		this.favoriOnly = favoriOnly;
 		this.ownedOnly = ownedOnly;
-		this.filtres = filtres;
+		this.filtres = activity.getFiltres();
+		this.activity = activity;
 	}
 	
 	@Override
@@ -69,20 +71,19 @@ public class TourneyAdapter extends BaseAdapter{
 			gameLogo.setBackgroundDrawable(tourneyData.gameLogo); // voir http://stackoverflow.com/questions/5454491/what-is-the-difference-between-src-and-background-of-imageview
 
 			ImageButton buttonFavori = (ImageButton) view.findViewById(R.id.favoriButton);
-			if(favorites.hasFavorite(tourneyData.tourneyID)) buttonFavori.setEnabled(true);
+			if(favorites.hasFavorite(tourneyData.tourneyID)) buttonFavori.setSelected(true);
 			buttonFavori.setOnClickListener(new OnClickListener(){
 				public void onClick(View button){
 					if(button.isSelected()){
 						// TOGGLE OFF
 						button.setSelected(false);
 						favorites.removeFavorite(tourneyData.tourneyID);
-						notifyDataSetChanged();
 					}else{
 						// TOGGLE ON
 						button.setSelected(true);
 						favorites.addFavorite(tourneyData.tourneyID);
-						notifyDataSetChanged();
 					}
+					activity.notifyFragmentDataSetChanged(); // Passe le changement a tous les fragments
 				}
 			});
 			
@@ -104,7 +105,6 @@ public class TourneyAdapter extends BaseAdapter{
 	
 	public void setFiltres(String[] filtres){
 		this.filtres = filtres;
-		this.notifyDataSetChanged();
 	}
 
 	

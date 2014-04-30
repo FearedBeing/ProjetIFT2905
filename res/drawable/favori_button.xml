@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item 
+        android:state_selected="true" 
+        android:drawable="@android:drawable/btn_star_big_on" />
+    <item 
+        android:drawable="@android:drawable/btn_star_big_off" />
+ 	</selector>
+
+<!--
+Voir http://stackoverflow.com/questions/2604599/android-imagebutton-with-a-selected-state
+ et  http://www.mkyong.com/android/android-imagebutton-selector-example/
+!-->

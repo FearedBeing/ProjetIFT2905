@@ -149,6 +149,12 @@ public class MainActivity extends FragmentActivity {
         
 	}
 	
+	public void notifyFragmentDataSetChanged(){
+		for(int k=0; k<fragList.size(); k++){
+			fragList.get(k).notifyDataSetChanged();
+		}
+	}
+	
 	public void setFiltres(String filtreTitre, String filtreJeu){
 		this.filtres = new String[2];
 		filtres[0] = filtreTitre;
@@ -156,6 +162,7 @@ public class MainActivity extends FragmentActivity {
 		for(int k=0; k<fragList.size(); k++){
 			fragList.get(k).setFiltres(this.filtres);
 		}
+		this.notifyFragmentDataSetChanged();
 	}
 	
 	public String[] getFiltres(){
