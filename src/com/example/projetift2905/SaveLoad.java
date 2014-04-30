@@ -21,7 +21,7 @@ public class SaveLoad{
 	}
     
 
-	public String[] GetFavorites(){
+	public String[] getFavorites(){
 		
 		// "Limite artificielle... on verra pour la suite."
 		String[] liste = new String[50];
@@ -48,7 +48,7 @@ public class SaveLoad{
 		return liste;
     }
 	
-	public void SetFavorites(String[] liste){
+	public void setFavorites(String[] liste){
 		
 		String str = "";
 		
@@ -62,9 +62,9 @@ public class SaveLoad{
 		
 	}
 	
-	public void AddFavorite(String fav){
+	public void addFavorite(String fav){
 		
-		String[] liste = GetFavorites();
+		String[] liste = getFavorites();
 			
 		int emptyspot = 0;
 		int dejala = 0;
@@ -77,12 +77,12 @@ public class SaveLoad{
 		liste[emptyspot] = fav;
 		
 
-		if (dejala == 0)SetFavorites(liste);
+		if (dejala == 0)setFavorites(liste);
 	}
 	
-	public void RemoveFavorite(String fav){
+	public void removeFavorite(String fav){
 		
-		String[] listein = GetFavorites();
+		String[] listein = getFavorites();
 		
 		// "Limite artificielle... on verra pour la suite."
 		String[] listeout = new String[50];
@@ -92,7 +92,7 @@ public class SaveLoad{
 		}
 		
 		
-		SetFavorites(listeout);
+		setFavorites(listeout);
 		
 	}
 
