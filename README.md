@@ -4,12 +4,11 @@
 
 ##Main activity##
 ###1.Fait:###
->>- Affichage des tournois
->>- Filtre par nom et jeu
+>- DONE! (a part quelques touch-up)
 
 ###2.A faire:###
->>- Afficher correctement les favoris et les tournois modifiables
->>- Filtrer par favoris et par modifiables
+>- Placer correctement le bouton 'Creer Tournoi'
+>- Layout final
 
 
 ##Detail tournoi##
