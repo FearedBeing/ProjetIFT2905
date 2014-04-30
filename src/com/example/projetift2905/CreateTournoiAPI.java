@@ -44,7 +44,7 @@ public class CreateTournoiAPI {
 		
 		//TourneyData infoTournoi;
 		String apiCallp1 = "https://api.binarybeast.com/?APIService=Tourney.TourneyCreate.Create&";
-		String apiCallp2 = "APIReturn=json&APIKey=3ad9fe9061f6dfe3f0d7d495a3bf8611.533c43d1901466.70692389&";
+		String apiCallp2 = "APIReturn=json&APIKey=" + R.string.API_KEY + "&";
 		
 		String argTitle = "Title=";
 		argTitle=argTitle.concat(title);

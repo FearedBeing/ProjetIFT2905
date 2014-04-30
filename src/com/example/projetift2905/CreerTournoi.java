@@ -42,7 +42,7 @@ public class CreerTournoi extends Activity {
 			@Override
 			public void onClick(View arg0) {								
 				
-				new BinaryBeastAPI("3ad9fe9061f6dfe3f0d7d495a3bf8611.533c43d1901466.70692389");					
+				new BinaryBeastAPI(R.string.API_KEY + "");					
 				Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();		//Pour verifier si la librairie
 
 				/* **************************************

@@ -44,7 +44,7 @@ public class LoadTourInfoById {
 		error = null;
 		TourneyData infoTournoi;
 		String apiCall1 = "https://api.binarybeast.com/?APIService=Tourney.TourneyLoad.Info&TourneyID=";
-		String apiCall2 = "&APIReturn=json&APIKey=3ad9fe9061f6dfe3f0d7d495a3bf8611.533c43d1901466.70692389";
+		String apiCall2 = "&APIReturn=json&APIKey=" + R.string.API_KEY;
 		String apiCall = apiCall1.concat(tourneyId);
 		apiCall = apiCall.concat(apiCall2);
 		System.out.println("LOADTOURNOIINFO/ apiCall: "+apiCall);		

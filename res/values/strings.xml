@@ -3,6 +3,7 @@
 
     <string name="app_name">ProjetIFT2905</string>
     <string name="action_settings">Settings</string>
+    <string name="API_KEY">3ad9fe9061f6dfe3f0d7d495a3bf8611.533c43d1901466.70692389</string>
     
     <!-- Ressources pour MainActivity -->
     <string name="title_activity_">SelectionTournoi</string>
