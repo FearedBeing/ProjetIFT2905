@@ -1,11 +1,12 @@
 package com.example.projetift2905;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,25 +14,34 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.widget.Toast;
-
 import android.view.View;
- import android.view.View.OnClickListener;
- import android.view.ViewGroup;
- import android.widget.Button;
- import android.content.Intent;
+import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
 
 public class MainActivity extends FragmentActivity {
 
-	PagerAdapter adapter;
+	PagerAdapter pagerAdapter;
+	ArrayAdapter<String> filtreAdapter;
+	ListView filtreView;
 	ViewPager pager;
 	SelectionTournoiAPI api;
 	List<MainPagerFragment> fragList;
+	String[] filtres = {"",""};
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,16 +53,15 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		this.api = null;
 		
-        //pour accelerer le debug des autres partiesVVV
 		new DownloadLoginTask().execute();
 		
 		/* *******************************
 		 * CREATION DE LA BARRE D'ONGLETS
 		 * *******************************/
         fragList = new ArrayList<MainPagerFragment>();
-		adapter = new PagerAdapter(getSupportFragmentManager());
+		pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         pager = (ViewPager) findViewById(R.id.pager);
-        pager.setAdapter(adapter);
+        pager.setAdapter(pagerAdapter);
         
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -68,30 +77,89 @@ public class MainActivity extends FragmentActivity {
             
         };
         
-        for (int i = 0; i < adapter.getCount(); i++) {
+        for (int i = 0; i < pagerAdapter.getCount(); i++) {
             actionBar.addTab(
                     actionBar.newTab()
-                            .setText(adapter.getPageTitle(i))
+                            .setText(pagerAdapter.getPageTitle(i))
                             .setTabListener(tabListener));
         }
-                
-        //
-        ((Button)findViewById(R.id.buttonToDetailsTournoi)).setOnClickListener(new OnClickListener() {
-        			@Override
-        			public void onClick(View arg0) {
-        				Intent i = new Intent(MainActivity.this, DetailsTournoi.class);
-        				startActivity(i);
-        			}
-        		});		
-        		
-        		((Button)findViewById(R.id.buttonToCreerTournoi)).setOnClickListener(new OnClickListener() {
-        		@Override
-        			public void onClick(View arg0) {
-        				Intent i = new Intent(MainActivity.this, CreerTournoi.class);
-        				startActivity(i);
-        			}
-        		});	
         
+        /* *******************************
+		 * CREATION DU POP-UP DES FILTRES
+		 * *******************************/
+        
+        ArrayList<String> items = new ArrayList<String>();
+        items.add("Filtres: Aucun");
+        
+        filtreAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, items);
+        filtreView = (ListView) findViewById(R.id.filtres);
+        filtreView.setAdapter(filtreAdapter);
+        filtreView.setOnItemClickListener(new OnItemClickListener(){
+        	
+        	public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+        		// Ouvrir le pop-up
+        		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
+        		View v = inflater.inflate(R.layout.popup_filtres, null, false);
+        		v.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);   // voir http://stackoverflow.com/questions/3014118/popup-window-size-in-android
+        		int height = v.getMeasuredHeight();
+        		int width = v.getMeasuredWidth() + 200;
+        		final PopupWindow pw = new PopupWindow(v,width,height, true); // final pour avoir acces dans les classes internes (comme OnClickListener)
+        		pw.showAtLocation(findViewById(R.id.mainRootContainer), Gravity.CENTER, 0, 0);
+        		
+        		// Controle du menu
+        		final EditText titre = (EditText)v.findViewById(R.id.popup_titre);
+        		final EditText jeu = (EditText)v.findViewById(R.id.popup_jeu);
+        		final ListView filtreView = (ListView)findViewById(R.id.filtres);
+        		final Button ok = (Button)v.findViewById(R.id.popupOk);
+        		ok.setOnClickListener(new OnClickListener(){
+        			@SuppressWarnings("unchecked")
+					public void onClick(View v) {
+						String filtre = "Filtres:";
+						setFiltres(titre.getText().toString(), jeu.getText().toString());
+        				if(getFiltres()[0].equals("") && getFiltres()[1].equals("")){
+        					filtre += " Aucun";
+        				}else{
+        					if(!getFiltres()[0].equals("")){
+        						filtre += " [Titre: " + getFiltres()[0] + "]";
+        					}
+        					if(!getFiltres()[1].equals("")){
+        						filtre += " [Jeu: " + getFiltres()[1] + "]";
+        					}
+        				}
+        				((ArrayAdapter<String>)filtreView.getAdapter()).clear();
+        				((ArrayAdapter<String>)filtreView.getAdapter()).add(filtre);
+        				((ArrayAdapter<String>)filtreView.getAdapter()).notifyDataSetChanged();
+        				pw.dismiss();
+					}
+        		});
+        	}
+        });
+        
+        /* ************
+		 * TEMPORAIRES
+		 * ************/
+        		
+		((Button)findViewById(R.id.buttonToCreerTournoi)).setOnClickListener(new OnClickListener() {
+		@Override
+			public void onClick(View arg0) {
+				Intent i = new Intent(MainActivity.this, CreerTournoi.class);
+				startActivity(i);
+			}
+		});	
+        
+	}
+	
+	public void setFiltres(String filtreTitre, String filtreJeu){
+		this.filtres = new String[2];
+		filtres[0] = filtreTitre;
+		filtres[1] = filtreJeu;
+		for(int k=0; k<fragList.size(); k++){
+			fragList.get(k).setFiltres(this.filtres);
+		}
+	}
+	
+	public String[] getFiltres(){
+		return filtres;
 	}
 	
 	public void setApi(SelectionTournoiAPI api){

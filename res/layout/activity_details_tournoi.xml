@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/mainRootContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BackGroundColor"
@@ -19,7 +19,7 @@
             android:layout_weight="0.1" >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/filtreNom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -45,7 +45,7 @@
             android:layout_weight="0.1" >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/filtreJeu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nom: "
@@ -190,7 +190,7 @@
             android:layout_weight="0.1" >
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/popupOk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"

@@ -27,12 +27,13 @@ public class SelectionTournoiAPI {
 	public String error;
 	
 	public class TourneyData{
-		public final String title, tourneyID;
+		public final String title, tourneyID, game;
 		public final Drawable gameLogo;
 		
-		public TourneyData(String tourneyID, String title, Drawable gameLogo){
+		public TourneyData(String tourneyID, String title, String game, Drawable gameLogo){
 			this.tourneyID = tourneyID;
 			this.title = title;
+			this.game = game;
 			this.gameLogo = gameLogo;
 		}
 	}
@@ -53,14 +54,12 @@ public class SelectionTournoiAPI {
 				String tourneyID = element.getString("TourneyID");
 				String title = element.getString("Title");
 				String gameIconURL = element.getString("GameIcon");
-				Log.d("DATA", tourneyID);
-				Log.d("DATA", title);
-				Log.d("DATA", gameIconURL);
+				String game = element.getString("Game");
 				Drawable gameLogo = null;
 				if( !gameIconURL.equals("null") ) {
 					gameLogo = loadHttpImage(gameIconURL);
 				}
-				dataList.add(new TourneyData(tourneyID, title, gameLogo));
+				dataList.add(new TourneyData(tourneyID, title, game, gameLogo));
 			}
 			
 		} catch (ClientProtocolException e) {

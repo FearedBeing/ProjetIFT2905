@@ -63,10 +63,6 @@ public class DetailsTournoi extends Activity {
 		
 		//new DownloadLoginTask().execute();	//appel a l'API
 
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
 		
 	}
 	
@@ -89,23 +85,6 @@ public class DetailsTournoi extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_details_tournoi,
-					container, false);
-			return rootView;
-		}
-	}
 	
 	public void setApi(LoadTourInfoById api){
 		this.api = api;
@@ -116,7 +95,7 @@ public class DetailsTournoi extends Activity {
 		int typeId = this.api.infoForId.typeId;
 		type.setText(String.valueOf(typeId));
 		
-		((TextView)findViewById(R.id.textView1)).setText(this.api.infoForId.tourneyID);
+		((TextView)findViewById(R.id.filtreNom)).setText(this.api.infoForId.tourneyID);
 		
 	}
 	
