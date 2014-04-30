@@ -41,13 +41,13 @@ public final class R {
         public static final int favoriButton=0x7f0a001f;
         public static final int filtreJeu=0x7f0a0001;
         public static final int filtreNom=0x7f0a0005;
-        public static final int filtres=0x7f0a0016;
+        public static final int filtres=0x7f0a0015;
         public static final int imageView1=0x7f0a0006;
         public static final int listTournois=0x7f0a0017;
         public static final int mainRootContainer=0x7f0a0000;
         public static final int nomTournoi=0x7f0a0021;
         public static final int ownedImage=0x7f0a0020;
-        public static final int pager=0x7f0a0015;
+        public static final int pager=0x7f0a0016;
         public static final int popupContainer=0x7f0a0018;
         public static final int popupLine1=0x7f0a0019;
         public static final int popupLine2=0x7f0a001c;
