@@ -20,8 +20,8 @@
 	<string name="DOTA2">1</string>
 
  	<string-array name="games">
-		<item>LeagueOfLegends</item>
-		<item>Dota2</item>
+		<item>LoL</item>
+		<item>DOTA2</item>
  		<item>CSS</item>
 	</string-array>
 

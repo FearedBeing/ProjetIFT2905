@@ -25,12 +25,12 @@ public class CreateTournoiAPI {
 	public String error;
 	
 	public class TourneyData{
-		public final String title, tourneyID, gameCode;
+		public final String title, gameCode;
 		public final int typeId;
 		//public final Drawable gameLogo;
 		
-		public TourneyData(String tourneyID, String title, String gameCode, int typeId){
-			this.tourneyID = tourneyID;
+		public TourneyData(String title, String gameCode, int typeId){
+			//this.tourneyID = tourneyID;
 			this.title = title;
 			this.gameCode = gameCode;
 			this.typeId = typeId;			
@@ -39,13 +39,15 @@ public class CreateTournoiAPI {
 		}
 	}
 	
-	CreateTournoiAPI(Context ctx, String tourneyId, int typeID, String title){
+	CreateTournoiAPI(Context ctx, int typeID, String title, String gameCode){
 		
 		error = null;
 		
+		System.out.println("Debug: "+title+" //"+gameCode);
+		
 		//TourneyData infoTournoi;
 		String apiCallp1 = "https://api.binarybeast.com/?APIService=Tourney.TourneyCreate.Create&";
-		String apiCallp2 = "APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY) + "&";
+		String apiCallp2 = "APIReturn=json&APIKey=" + R.string.API_KEY + "&";
 		
 		String argTitle = "Title=";
 		argTitle=argTitle.concat(title);
@@ -53,18 +55,21 @@ public class CreateTournoiAPI {
 		
 		String argTypeID = "TypeID=";
 		argTypeID=argTypeID.concat("0");
-		//argTypeID=argTypeID.concat("&");
-		
-		/*String argTypeID = "Game=";
-		argTypeID=argTypeID.concat("0");
 		argTypeID=argTypeID.concat("&");
 		
-		String argTypeID = "TypeID=";
-		argTypeID=argTypeID.concat("0");*/
+		String argTypeGameCode = "GameCode=";
+		argTypeGameCode=argTypeGameCode.concat(gameCode);
+		//argTypeID=argTypeID.concat("&");
+		
+		//String argTypeID = "TypeID=";
+		//argTypeID=argTypeID.concat("0");
 		//argTypeID=argTypeID.concat("&");
 		
 		//String apiCall = apiCallp1+argTitle+argTypeID+apiCallp2;
-		String apiCall = apiCallp1+apiCallp2+argTitle+argTypeID;
+		String apiCall = apiCallp1+apiCallp2;
+		apiCall+=argTitle;
+		apiCall+=argTypeID;
+		apiCall+=argTypeGameCode;
 		
 		System.out.println("CREATE TOURNOI API: "+apiCall);
 		

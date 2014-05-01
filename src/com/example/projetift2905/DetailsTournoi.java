@@ -30,10 +30,8 @@ import com.binarybeast.api.BinaryBeastAPI;
 public class DetailsTournoi extends Activity {
 		
 	//informations a charger
-	TextView id;
-	TextView name;
-	TextView game;
-	TextView type;
+	TextView id, name, game, type, status, dateCreated, teamsConfirmedCount;
+	
 	
 	LoadTourInfoById api;	
 	String TourneyID="0";
@@ -62,6 +60,9 @@ public class DetailsTournoi extends Activity {
 		name=(TextView)findViewById(R.id.textView5);	
 		game=(TextView)findViewById(R.id.textView6);	
 		type=(TextView)findViewById(R.id.textView7);
+		dateCreated=(TextView)findViewById(R.id.textView9);	
+		status=(TextView)findViewById(R.id.textView13);
+		teamsConfirmedCount=(TextView)findViewById(R.id.textView11);
 		
 	}
 	
@@ -103,7 +104,13 @@ public class DetailsTournoi extends Activity {
 		int typeId = this.api.infoForId.typeId;
 		type.setText(String.valueOf(typeId));
 		
-		((TextView)findViewById(R.id.filtreNom)).setText(this.api.infoForId.tourneyID);
+		dateCreated.setText(String.valueOf(this.api.infoForId.dateCreated));
+		
+		status.setText(String.valueOf(this.api.infoForId.status));
+		
+		//teamsConfirmedCount.setText(this.api.infoForId.teamsConfirmedCount);
+		
+		((TextView)findViewById(R.id.filtreNom)).setText(String.valueOf(this.api.infoForId.tourneyID));
 		
 	}
 	

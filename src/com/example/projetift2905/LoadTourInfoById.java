@@ -25,14 +25,17 @@ public class LoadTourInfoById {
 	public String error;
 	
 	public class TourneyData{
-		public final String title, tourneyID, gameCode;
-		public final int typeId;
+		public final String title, tourneyID, gameCode, dateCreated, status;
+		public final int typeId, teamsConfirmedCount;
 		
-		public TourneyData(String tourneyID, String title, String gameCode, int typeId){
+		public TourneyData(String tourneyID, String title, String gameCode, int typeId, String dateCreated, String status, int teamsConfirmedCount){
 			this.tourneyID = tourneyID;
 			this.title = title;
 			this.gameCode = gameCode;
 			this.typeId = typeId;			
+			this.dateCreated= dateCreated;
+			this.status=status;
+			this.teamsConfirmedCount=teamsConfirmedCount;
 			//this.gameLogo = gameLogo;
 		}
 	}
@@ -52,11 +55,17 @@ public class LoadTourInfoById {
 			JSONObject info = js.getJSONObject("TourneyInfo");
 			
 			System.out.println("****");	
+			
 			String title = info.getString("Title");
 			String gameCode = info.getString("Game");
 			int typeId = info.getInt("TypeID");
-			this.infoForId = new TourneyData(tourneyId, title, gameCode, typeId);
-			System.out.println("InfoTournoi: "+tourneyId+" "+title+" "+gameCode+" "+typeId);			
+			String status = info.getString("Status");
+			String dateCreated = info.getString("DateCreated");
+			int teamsConfirmedCount = info.getInt("TeamsConfirmedCount");
+			
+			
+			this.infoForId = new TourneyData(tourneyId, title, gameCode, typeId, dateCreated, status, teamsConfirmedCount);
+			System.out.println("InfoTournoi: "+tourneyId+" "+title+" "+gameCode+" "+typeId+" "+teamsConfirmedCount);			
 			
 		} catch (ClientProtocolException e) {
 			error = "Erreur HTTP (protocole) :"+e.getMessage();

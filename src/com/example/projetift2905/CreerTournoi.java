@@ -19,9 +19,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
@@ -29,10 +31,14 @@ import android.os.Build;
 public class CreerTournoi extends Activity {
 	
 	CreateTournoiAPI api;
+	String gameCode;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		
 		setContentView(R.layout.activity_creer_tournoi);
 		
 		this.api = null;
@@ -53,6 +59,9 @@ public class CreerTournoi extends Activity {
 				//BBRequest.tourneyDelete("xSC214041926").execute(new BBRequestHandler()	//pour supprimer le tournoi créé
 				
 				EditText mEdit = (EditText)findViewById(R.id.editNomNewTournoi);
+				Spinner spinner = (Spinner)findViewById(R.id.spinner1);
+				gameCode = spinner.getSelectedItem().toString();
+				
 				
 				//String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.Popular&APIReturn=json&APIKey=4904a28e5c92f5919f7fcc2e716597e8.5350362f7b2669.06156210&Limit=25";
 
@@ -109,14 +118,16 @@ public class CreerTournoi extends Activity {
 		protected CreateTournoiAPI doInBackground(String... params) {
 			//LoadTourInfoById api = new LoadTourInfoById("defaultString");	//identifiant du tournoi a afficher
 			
-			String tId = getText(R.string.InfoTourneyId).toString();
+			//String tId = getText(R.string.InfoTourneyId).toString();
 			EditText text = (EditText)findViewById(R.id.editNomNewTournoi);
 			String nom = text.getText().toString();
 			//String nom = getText(R.id.editNomNewTournoi).toString();
 			
 			System.out.println("editNomNewTournoi: "+nom);
 			
-			CreateTournoiAPI api = new CreateTournoiAPI(getApplicationContext(), tId, 2, nom);	//identifiant du tournoi a afficher
+			
+			
+			CreateTournoiAPI api = new CreateTournoiAPI(getApplicationContext(), 2, nom, gameCode);	//identifiant du tournoi a afficher
 			return api;
 		}
 		
