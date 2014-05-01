@@ -19,18 +19,18 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 
-public class CreateTournoiAPI {
+public class ListTeams {
 	
 	public TourneyData infoForId;
 	public String error;
 	
 	public class TourneyData{
-		public final String title, gameCode;
+		public final String title, tourneyID, gameCode;
 		public final int typeId;
 		//public final Drawable gameLogo;
 		
-		public TourneyData(String title, String gameCode, int typeId){
-			//this.tourneyID = tourneyID;
+		public TourneyData(String tourneyID, String title, String gameCode, int typeId){
+			this.tourneyID = tourneyID;
 			this.title = title;
 			this.gameCode = gameCode;
 			this.typeId = typeId;			
@@ -39,37 +39,28 @@ public class CreateTournoiAPI {
 		}
 	}
 	
-	CreateTournoiAPI(Context ctx, int typeID, String title, String gameCode){
+	ListTeams(Context ctx, String tourneyId, int typeID, String title){
 		
 		error = null;
 		
-		System.out.println("Debug: "+title+" //"+gameCode);
-		
 		//TourneyData infoTournoi;
-		String apiCallp1 = "https://api.binarybeast.com/?APIService=Tourney.TourneyCreate.Create&";
+		String apiCallp1 = "https://api.binarybeast.com/?APIService=Tourney.TourneyLoad.Teams&";
 		String apiCallp2 = "APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY) + "&";
 		
-		String argTitle = "Title=";
-		argTitle=argTitle.concat(title);
-		argTitle=argTitle.concat("&");
+		String argTourneyId = "TourneyID=";
+		argTourneyId=argTourneyId.concat(tourneyId);
+		//argTypeID=argTypeID.concat("&");
 		
-		String argTypeID = "TypeID=";
+		/*String argTypeID = "Game=";
 		argTypeID=argTypeID.concat("0");
 		argTypeID=argTypeID.concat("&");
 		
-		String argTypeGameCode = "GameCode=";
-		argTypeGameCode=argTypeGameCode.concat(gameCode);
-		//argTypeID=argTypeID.concat("&");
-		
-		//String argTypeID = "TypeID=";
-		//argTypeID=argTypeID.concat("0");
+		String argTypeID = "TypeID=";
+		argTypeID=argTypeID.concat("0");*/
 		//argTypeID=argTypeID.concat("&");
 		
 		//String apiCall = apiCallp1+argTitle+argTypeID+apiCallp2;
-		String apiCall = apiCallp1+apiCallp2;
-		apiCall+=argTitle;
-		apiCall+=argTypeID;
-		apiCall+=argTypeGameCode;
+		String apiCall = apiCallp1+apiCallp2+argTourneyId;
 		
 		System.out.println("CREATE TOURNOI API: "+apiCall);
 		
@@ -80,7 +71,7 @@ public class CreateTournoiAPI {
 			HttpEntity page = getHttp(apiCall);
 			JSONObject js = new JSONObject(EntityUtils.toString(page, HTTP.UTF_8));
 			
-			String tourneyIdd = js.getString("TourneyID");
+			String tourneyIdd = js.getString("Result");
 			
 		} catch (ClientProtocolException e) {
 			error = "Erreur HTTP (protocole) :"+e.getMessage();
