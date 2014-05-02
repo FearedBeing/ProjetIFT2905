@@ -14,6 +14,10 @@ import android.widget.TextView;
 
 import com.example.projetift2905.SelectionTournoiAPI.TourneyData;
 
+/*
+ * TourneyAdapter est le custom adapter qui gère le listView contenu dans MainPagerFragment.
+ * TourneyAdapter est donc nécessaire à MainActivity.
+ */
 public class TourneyAdapter extends BaseAdapter{	
 	
 	private Context context;

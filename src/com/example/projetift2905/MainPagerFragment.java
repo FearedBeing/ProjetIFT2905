@@ -15,6 +15,10 @@ import android.widget.ListView;
 
 import com.example.projetift2905.SelectionTournoiAPI.TourneyData;
 
+/*
+ * MainPagerFragment contient les fragments affichés par la MainActivity. Elle contient principalement le listView qui affiche la liste de tournois.
+ * MainPagerFragment est évidemment utilisé par MainActivity.
+ */
 public class MainPagerFragment extends Fragment{
 	
 	private List<TourneyData> dataList;

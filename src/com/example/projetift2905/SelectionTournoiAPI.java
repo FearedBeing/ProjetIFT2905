@@ -22,6 +22,10 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+/*
+ * SelectionTournoiAPI est la classe qui gère tous les appels API nécessaire à MainActivity. Elle va chercher les infos des tournois récents et possèdés en 2 appels api.
+ * Pour les favoris, il faut 1 appel api par tournoi, car les favoris ne sont pas gérés par l'api elle-même.
+ */
 public class SelectionTournoiAPI {
 	
 	public List<TourneyData> dataList;

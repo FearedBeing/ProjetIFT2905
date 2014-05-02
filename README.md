@@ -25,3 +25,19 @@
 
 ###2.A faire:###
 >- changer la méthode d'appel API
+
+
+##Résultats tournois##
+###1.Fait:###
+>- Parser HTML
+
+###2.A faire:###
+>- L'activité au complet
+
+
+##Résultats match##
+###1.Fait:###
+>- Rien
+
+###2.A faire:###
+>- Tout
