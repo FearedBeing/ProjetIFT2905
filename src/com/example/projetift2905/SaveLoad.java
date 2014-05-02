@@ -7,7 +7,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-
+/*
+ * SaveLoad est la classe qui prend en charge les tournois favoris. SaveLoad permet d'enregistrer un nouveau favori, ou d'accèder à ceux déjà enregistrer.
+ * SaveLoad est utilisé dans la MainActivity
+ */
 public class SaveLoad{
 
     public static final String FAVORIS = "favorites";

@@ -32,6 +32,10 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+/*
+ * MainActivity est l'activité ouverte au lancement de l'app. Elle permet de consulter les tournois récents, favoris, et possédés.
+ * Il aussi possible de filtrer les résultats par nom de tounoi et par jeu.
+ */
 
 public class MainActivity extends FragmentActivity {
 
