@@ -40,6 +40,14 @@
             android:name="com.example.projetift2905.ListTeams"
             android:label="@string/title_activity_list_teams" >
         </activity>
+        <activity
+            android:name="com.example.projetift2905.ListPlayersAPI"
+            android:label="@string/title_activity_list_players_api" >
+        </activity>
+        <activity
+            android:name="com.example.projetift2905.ListPlayers"
+            android:label="@string/title_activity_list_players" >
+        </activity>
     </application>
 
 </manifest>

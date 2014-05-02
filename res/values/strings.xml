@@ -15,16 +15,16 @@
     <string name="title_activity_details_tournoi">DetailsTournoi</string>
     <string name="InfoTourneyId">xSC214042710</string>
     <string name="title_activity_creer_tournoi">CreerTournoi</string>
-   
 
- 	<string-array name="games">
-		<item><string name="LoL">LoL</string></item>
-		<item><string name="DOTA2">DOTA2</string></item>
- 		<item><string name="CSS">CSS</string></item>
-	</string-array>
-	
+    <string-array name="games">
+        <item><string name="LoL">LoL</string></item>
+        <item><string name="DOTA2">DOTA2</string></item>
+        <item><string name="CSS">CSS</string></item>
+    </string-array>
+
     <string name="title_activity_list_teams">ListTeams</string>
     <string name="hello_world">Hello world!</string>
-
+    <string name="title_activity_list_players_api">ListPlayersAPI</string>
+    <string name="title_activity_list_players">ListPlayers</string>
 
 </resources>
