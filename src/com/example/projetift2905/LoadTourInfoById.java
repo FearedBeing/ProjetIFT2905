@@ -78,6 +78,31 @@ public class LoadTourInfoById {
 		}	
 	}
 	
+	LoadTourInfoById(Context ctx, String tourneyId, int uselessArg){
+		error = null;
+		TourneyData infoTournoi;
+		String apiCall1 = "https://api.binarybeast.com/?APIService=Tourney.TourneyDelete.Delete&TourneyID=";
+		String apiCall2 = "&APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY);
+		String apiCall = apiCall1.concat(tourneyId);
+		apiCall = apiCall.concat(apiCall2);
+		System.out.println("DELETETOURNOI/ apiCall: "+apiCall);		
+		
+		try{			
+			HttpEntity page = getHttp(apiCall);
+			JSONObject js = new JSONObject(EntityUtils.toString(page, HTTP.UTF_8));
+					
+			
+		} catch (ClientProtocolException e) {
+			error = "Erreur HTTP (protocole) :"+e.getMessage();
+		} catch (IOException e) {
+			error = "Erreur HTTP (IO) :"+e.getMessage();
+		} catch (ParseException e) {
+			error = "Erreur JSON (parse) :"+e.getMessage();
+		} catch (JSONException e) {
+			error = "Erreur JSON :"+e.getMessage();
+		}	
+	}
+	
 	private HttpEntity getHttp(String url) throws ClientProtocolException, IOException {
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpGet http = new HttpGet(url);

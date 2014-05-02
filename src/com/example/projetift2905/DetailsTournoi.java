@@ -35,6 +35,7 @@ public class DetailsTournoi extends Activity {
 	
 	LoadTourInfoById api;	
 	String TourneyID="0";
+	int deleteTournoi = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,16 @@ public class DetailsTournoi extends Activity {
 		dateCreated=(TextView)findViewById(R.id.textView9);	
 		status=(TextView)findViewById(R.id.textView13);
 		teamsConfirmedCount=(TextView)findViewById(R.id.textView11);
+		
+		((Button)findViewById(R.id.buttonDelete)).setOnClickListener(new OnClickListener() {
+			@Override
+				public void onClick(View arg0) {
+							
+					deleteTournoi=1;
+					new DownloadLoginTask().execute();	
+					
+				}
+			});	
 		
 	}
 	
@@ -140,9 +151,16 @@ public class DetailsTournoi extends Activity {
 			}
 			
 			System.out.println("tourney//Id: "+tId);//0
-			LoadTourInfoById api = new LoadTourInfoById(getApplicationContext(), tId);	 //identifiant du tournoi a afficher
 			
-			return api;
+			if(deleteTournoi==0){
+				LoadTourInfoById api = new LoadTourInfoById(getApplicationContext(), tId);	 //identifiant du tournoi a afficher
+				return api;
+			}
+			else{
+				LoadTourInfoById api = new LoadTourInfoById(getApplicationContext(), tId, 0);	 //identifiant du tournoi a afficher
+				return api;
+			}
+			
 		}
 		
 		protected void onProgressUpdate(String... s) {}
@@ -162,7 +180,13 @@ public class DetailsTournoi extends Activity {
 				return;
 			}
 			
-			setApi(api);
+			if(deleteTournoi!=0){
+				deleteTournoi=0;
+				finish();
+			}
+			else{
+				setApi(api);
+			}
 		}
 	}	
 		

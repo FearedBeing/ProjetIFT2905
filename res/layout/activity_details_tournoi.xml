@@ -18,23 +18,28 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.1" >
 
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:src="@drawable/ic_launcher" />
+
             <TextView
                 android:id="@+id/filtreNom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="0.7"
+                android:layout_weight="1.0"
                 android:text="  Details tournoi"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="25dp" />
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <ImageView
-                android:id="@+id/imageView1"
+            <Button
+                android:id="@+id/buttonDelete"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:layout_weight="0.3"
-                android:src="@drawable/ic_launcher" />
+                android:text="X" />
 
         </LinearLayout>
 
