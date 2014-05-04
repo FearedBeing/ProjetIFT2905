@@ -49,18 +49,15 @@ public class ListPlayers extends Activity {
             public void onClick(View arg0) {                                
                 
                 new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");                    
-                Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();        //Pour verifier si la librairie
+                //Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();        //Pour verifier si la librairie
 
                 /* **************************************
                  * APPEL API POUR CREER LISTE DE TOURNOIS
                  * **************************************/                
-                new DownloadLoginTask().execute();    
-                
+                new DownloadLoginTask().execute();
                 //BBRequest.tourneyDelete("xSC214041926").execute(new BBRequestHandler()    //pour supprimer le tournoi cr��
                 
-                EditText mEdit = (EditText)findViewById(R.id.editNomNewTournoi);
-                Spinner spinner = (Spinner)findViewById(R.id.spinner1);
-                gameCode = spinner.getSelectedItem().toString();
+
                 
                 
                 //String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.Popular&APIReturn=json&APIKey=4904a28e5c92f5919f7fcc2e716597e8.5350362f7b2669.06156210&Limit=25";
@@ -116,11 +113,13 @@ public class ListPlayers extends Activity {
         }
         
         protected ListPlayersAPI doInBackground(String... params) {
-            //LoadTourInfoById api = new LoadTourInfoById("defaultString");    //identifiant du tournoi a afficher
-            
-            //String tId = getText(R.string.InfoTourneyId).toString();
             EditText text = (EditText)findViewById(R.id.editNomNewTournoi);
-            String nom = text.getText().toString();
+            //String nom = text.getText().toString();
+            
+            
+            String nom="ERRoR Tourney";
+            
+            
             //String nom = getText(R.id.editNomNewTournoi).toString();
             
             System.out.println("editNomNewTournoi: "+nom);
