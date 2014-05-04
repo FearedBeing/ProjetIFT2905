@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.widget.Toast;
 
 
 public class ListPlayersAPI {
@@ -71,6 +72,9 @@ public class ListPlayersAPI {
             
             HttpEntity page = getHttp(apiCall);
             JSONObject js = new JSONObject(EntityUtils.toString(page, HTTP.UTF_8));
+            
+            String text=js.getJSONArray("Teams").getJSONObject(0).getString("Points");
+            System.out.println(text);
             
             String tourneyIdd = js.getString("TourneyID");
             
