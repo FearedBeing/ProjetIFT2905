@@ -35,14 +35,13 @@ public class ListPlayers extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         
+        super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         
         setContentView(R.layout.activity_list_players);
         
         this.api = null;
-        
         
         ((Button)findViewById(R.id.button1)).setOnClickListener(new OnClickListener() {
             @Override
@@ -116,7 +115,9 @@ public class ListPlayers extends Activity {
             EditText text = (EditText)findViewById(R.id.editNomNewTournoi);
             //String nom = text.getText().toString();
             
-            
+            Intent intent = getIntent();
+            String TourneyID = intent.getStringExtra("TourneyID");
+            System.out.println("ID transfere :"+TourneyID);
             String nom="ERRoR Tourney";
             
             
@@ -126,7 +127,7 @@ public class ListPlayers extends Activity {
             
             
             
-            ListPlayersAPI api = new ListPlayersAPI(getApplicationContext(), 2, nom, gameCode);    //identifiant du tournoi a afficher
+            ListPlayersAPI api = new ListPlayersAPI(getApplicationContext(), 2, nom, gameCode, TourneyID);    //identifiant du tournoi a afficher
             return api;
         }
         
