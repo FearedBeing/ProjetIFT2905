@@ -5,6 +5,7 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 //
 import android.app.Activity;
 import android.app.Fragment;
@@ -88,6 +89,7 @@ public class DetailsTournoi extends Activity {
                 public void onClick(View arg0) {
                             
                     deleteTournoi=1;
+                    (new SaveLoad(getApplicationContext())).removeFavorite(TourneyID);
                     new DownloadLoginTask().execute();    
                     
                 }

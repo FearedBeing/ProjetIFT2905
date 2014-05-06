@@ -32,6 +32,7 @@ public class CreerTournoi extends Activity {
 	
 	CreateTournoiAPI api;
 	String gameCode;
+	String playersToInvite;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +55,17 @@ public class CreerTournoi extends Activity {
 				/* **************************************
 				 * APPEL API POUR CREER LISTE DE TOURNOIS
 				 * **************************************/				
-		        new DownloadLoginTask().execute();	
-				
+		        new DownloadLoginTask().execute();				
 				//BBRequest.tourneyDelete("xSC214041926").execute(new BBRequestHandler()	//pour supprimer le tournoi créé
 				
 				EditText mEdit = (EditText)findViewById(R.id.editNomNewTournoi);
 				Spinner spinner = (Spinner)findViewById(R.id.spinner1);
 				gameCode = spinner.getSelectedItem().toString();
-				
+				EditText mEdit2 = (EditText)findViewById(R.id.editTextInvit);
+				playersToInvite = mEdit2.getText().toString();	
+				playersToInvite = playersToInvite.replace(" ", ",,");
 				
 				//String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.Popular&APIReturn=json&APIKey=4904a28e5c92f5919f7fcc2e716597e8.5350362f7b2669.06156210&Limit=25";
-
 			}
 		});	
 	}
@@ -124,10 +125,9 @@ public class CreerTournoi extends Activity {
 			//String nom = getText(R.id.editNomNewTournoi).toString();
 			
 			System.out.println("editNomNewTournoi: "+nom);
+					
 			
-			
-			
-			CreateTournoiAPI api = new CreateTournoiAPI(getApplicationContext(), 2, nom, gameCode);	//identifiant du tournoi a afficher
+			CreateTournoiAPI api = new CreateTournoiAPI(getApplicationContext(), 2, nom, gameCode, playersToInvite);	//identifiant du tournoi a afficher
 			return api;
 		}
 		
