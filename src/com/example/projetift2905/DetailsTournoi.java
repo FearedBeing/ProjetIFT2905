@@ -5,7 +5,7 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-//
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -21,6 +21,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -67,8 +68,6 @@ public class DetailsTournoi extends Activity {
         status=(TextView)findViewById(R.id.textView13);
         teamsConfirmedCount=(TextView)findViewById(R.id.textView11);
         
-        
-        
         ((Button)findViewById(R.id.popupOk)).setOnClickListener(new OnClickListener() {
             @Override
                 public void onClick(View arg0) {
@@ -81,9 +80,8 @@ public class DetailsTournoi extends Activity {
                     
                 }
             });    
-        
-        
-        ((Button)findViewById(R.id.buttonDelete)).setOnClickListener(new OnClickListener() {
+                
+        ((ImageButton)findViewById(R.id.IMGBTNDelete)).setOnClickListener(new OnClickListener() {
             @Override
                 public void onClick(View arg0) {
                             
@@ -91,8 +89,7 @@ public class DetailsTournoi extends Activity {
                     new DownloadLoginTask().execute();    
                     
                 }
-            });    
-        
+            });
     }
     
     @Override
