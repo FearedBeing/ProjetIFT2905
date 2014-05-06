@@ -88,6 +88,14 @@ public class MainActivity extends FragmentActivity {
                             .setTabListener(tabListener));
         }
         
+        pager.setOnPageChangeListener(
+                new ViewPager.SimpleOnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        getActionBar().setSelectedNavigationItem(position);
+                    }
+                });
+        
         /* *******************************
 		 * CREATION DU POP-UP DES FILTRES
 		 * *******************************/

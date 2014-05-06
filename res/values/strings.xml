@@ -26,5 +26,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_list_players_api">ListPlayersAPI</string>
     <string name="title_activity_list_players">ListPlayers</string>
+    <string name="title_activity_tourney_results">TourneyResults</string>
 
 </resources>

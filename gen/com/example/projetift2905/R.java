@@ -83,13 +83,15 @@ public final class R {
         public static final int activity_list_players_api=0x7f030003;
         public static final int activity_list_teams=0x7f030004;
         public static final int activity_main=0x7f030005;
-        public static final int fragment_list_players=0x7f030006;
-        public static final int fragment_list_players_api=0x7f030007;
-        public static final int fragment_list_teams=0x7f030008;
-        public static final int fragment_main=0x7f030009;
-        public static final int null_layout=0x7f03000a;
-        public static final int popup_filtres=0x7f03000b;
-        public static final int tournoi_element=0x7f03000c;
+        public static final int activity_tourney_results=0x7f030006;
+        public static final int fragment_list_players=0x7f030007;
+        public static final int fragment_list_players_api=0x7f030008;
+        public static final int fragment_list_teams=0x7f030009;
+        public static final int fragment_main=0x7f03000a;
+        public static final int fragment_tourney_results=0x7f03000b;
+        public static final int null_layout=0x7f03000c;
+        public static final int popup_filtres=0x7f03000d;
+        public static final int tournoi_element=0x7f03000e;
     }
     public static final class menu {
         public static final int creer_tournoi=0x7f090000;
@@ -98,6 +100,7 @@ public final class R {
         public static final int list_players_api=0x7f090003;
         public static final int list_teams=0x7f090004;
         public static final int main=0x7f090005;
+        public static final int tourney_results=0x7f090006;
     }
     public static final class string {
         public static final int API_KEY=0x7f060002;
@@ -115,6 +118,7 @@ public final class R {
         public static final int title_activity_list_players=0x7f06000f;
         public static final int title_activity_list_players_api=0x7f06000e;
         public static final int title_activity_list_teams=0x7f06000c;
+        public static final int title_activity_tourney_results=0x7f060010;
         public static final int title_section1=0x7f060004;
         public static final int title_section2=0x7f060005;
         public static final int title_section3=0x7f060006;
