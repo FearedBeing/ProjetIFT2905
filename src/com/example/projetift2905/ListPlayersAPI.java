@@ -26,6 +26,7 @@ public class ListPlayersAPI {
     public List<TourneyData> infoForId;
     public String error;
     String TourneyID;
+    public List<String> names;
     
     public class TourneyData{
         public final String TourneyTeamID,points,group,DisplayName,Losses,Wins;
@@ -74,6 +75,7 @@ public class ListPlayersAPI {
         
         System.out.println("CREATE TOURNOI API: "+apiCall);
         List<TourneyData> lst = new ArrayList<TourneyData>();
+        List<String> noms = new ArrayList<String>();
         try{
             
             HttpEntity page = getHttp(apiCall);
@@ -98,10 +100,12 @@ public class ListPlayersAPI {
                 */
                 TourneyData td = new TourneyData(TourneyTeamID,"A","0",DisplayName,"0","0");
                 lst.add(td);
+                noms.add(DisplayName);
                 
                 i++;
             }
             this.infoForId=lst;
+            this.names=noms;
             for(i=0;i<this.infoForId.size();i++){
                 System.out.println(this.infoForId.get(i).DisplayName);
             }
