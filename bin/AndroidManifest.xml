@@ -48,6 +48,10 @@
             android:name="com.example.projetift2905.ListPlayers"
             android:label="@string/title_activity_list_players" >
         </activity>
+        <activity
+            android:name="com.example.projetift2905.TourneyResults"
+            android:label="@string/title_activity_tourney_results" >
+        </activity>
     </application>
 
 </manifest>
