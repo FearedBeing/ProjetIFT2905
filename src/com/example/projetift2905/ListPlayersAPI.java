@@ -84,6 +84,7 @@ public class ListPlayersAPI {
             while(i<js.getJSONArray("Teams").length()){
                 System.out.println(i+":Teams");
                 String TourneyTeamID=js.getJSONArray("Teams").getJSONObject(i).getString("TourneyTeamID");
+                String DisplayName=js.getJSONArray("Teams").getJSONObject(i).getString("DisplayName");
                 /*System.out.println(i+":ID");
                 String group=js.getJSONArray("Teams").getJSONObject(i).getString("Group");
                 System.out.println(i+":Points");
@@ -95,14 +96,14 @@ public class ListPlayersAPI {
                 System.out.println(i+":Wins");
                 String Wins=js.getJSONArray("Teams").getJSONObject(i).getString("Wins");
                 */
-                TourneyData td = new TourneyData(TourneyTeamID,"A","0","X","0","0");
+                TourneyData td = new TourneyData(TourneyTeamID,"A","0",DisplayName,"0","0");
                 lst.add(td);
                 
                 i++;
             }
             this.infoForId=lst;
             for(i=0;i<this.infoForId.size();i++){
-                System.out.println(this.infoForId.get(i).TourneyTeamID);
+                System.out.println(this.infoForId.get(i).DisplayName);
             }
             
         } catch (ClientProtocolException e) {
