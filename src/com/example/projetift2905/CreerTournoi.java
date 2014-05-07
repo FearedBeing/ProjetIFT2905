@@ -63,7 +63,9 @@ public class CreerTournoi extends Activity {
 				gameCode = spinner.getSelectedItem().toString();
 				EditText mEdit2 = (EditText)findViewById(R.id.editTextInvit);
 				playersToInvite = mEdit2.getText().toString();	
+				System.out.println("1/playersToInvite: "+playersToInvite);
 				playersToInvite = playersToInvite.replace(" ", ",,");
+				System.out.println("2/playersToInvite: "+playersToInvite);
 				
 				//String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.Popular&APIReturn=json&APIKey=4904a28e5c92f5919f7fcc2e716597e8.5350362f7b2669.06156210&Limit=25";
 			}

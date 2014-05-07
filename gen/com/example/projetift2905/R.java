@@ -30,18 +30,19 @@ public final class R {
     public static final class drawable {
         public static final int editable_tourney=0x7f020000;
         public static final int favori_button=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int notowned_tourney=0x7f020003;
-        public static final int owned_tourney=0x7f020004;
-        public static final int owner_imageview=0x7f020005;
+        public static final int ic_delete=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int notowned_tourney=0x7f020004;
+        public static final int owned_tourney=0x7f020005;
+        public static final int owner_imageview=0x7f020006;
     }
     public static final class id {
+        public static final int IMGBTNDelete=0x7f0a000b;
         public static final int LogoImage=0x7f0a0027;
         public static final int ValiderCreerTournoi=0x7f0a0008;
         public static final int action_settings=0x7f0a0028;
         public static final int button1=0x7f0a001a;
         public static final int button2=0x7f0a0017;
-        public static final int buttonDelete=0x7f0a000b;
         public static final int buttonToCreerTournoi=0x7f0a001b;
         public static final int container=0x7f0a0019;
         public static final int editNomNewTournoi=0x7f0a0002;
