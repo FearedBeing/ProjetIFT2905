@@ -33,9 +33,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
-public class ListPlayers extends Activity {
+public class AddPlayerActivity extends Activity {
     
-    ListPlayersAPI api;
+    AddPlayerAPI api;
     String gameCode;
     private ListView lv;
 
@@ -45,7 +45,7 @@ public class ListPlayers extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         
-        setContentView(R.layout.activity_list_players);
+        setContentView(R.layout.activity_add_player);
         
         
         
@@ -54,17 +54,7 @@ public class ListPlayers extends Activity {
         
         lv = (ListView) findViewById(R.id.listView1);
 
-        new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");                    
-        //Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();        //Pour verifier si la librairie
-
-        /* **************************************
-         * APPEL API POUR CREER LISTE DE TOURNOIS
-         * **************************************/                
-        new DownloadLoginTask().execute();
         
-        
-        
-        this.api = null;
         
         //((Button)findViewById(R.id.button1)).setOnClickListener(new OnClickListener() {
             //@Override
@@ -96,12 +86,16 @@ public class ListPlayers extends Activity {
         ((Button)findViewById(R.id.button1)).setOnClickListener(new OnClickListener() {
             @Override
                 public void onClick(View arg0) {
-                    Intent i = new Intent(ListPlayers.this, AddPlayerActivity.class);
-                    /* HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEREEEEEEEEEEEEEEEEEEEE !!!!!*/
-                    Intent intent = getIntent();
-                    String TourneyID = intent.getStringExtra("TourneyID");
-                    i.putExtra("TourneyID", TourneyID);
-                    startActivity(i);
+                new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");                    
+                //Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();        //Pour verifier si la librairie
+
+                /* **************************************
+                 * APPEL API POUR CREER LISTE DE TOURNOIS
+                 * **************************************/                
+                new DownloadLoginTask().execute();
+                
+                
+                
                 }
             });
         return true;
@@ -134,19 +128,19 @@ public class ListPlayers extends Activity {
         
     }
     
-    public ListPlayersAPI getApi(){
+    public AddPlayerAPI getApi(){
         return this.api;
     }
     
     
-    private class DownloadLoginTask extends AsyncTask<String, String, ListPlayersAPI> {
+    private class DownloadLoginTask extends AsyncTask<String, String, AddPlayerAPI> {
         
         protected void onPreExecute() {
             setProgressBarIndeterminateVisibility(true);
         }
         
-        protected ListPlayersAPI doInBackground(String... params) {
-            EditText text = (EditText)findViewById(R.id.editNomNewTournoi);
+        protected AddPlayerAPI doInBackground(String... params) {
+            EditText text = (EditText)findViewById(R.id.editText1);
             //String nom = text.getText().toString();
             
             Intent intent = getIntent();
@@ -161,7 +155,7 @@ public class ListPlayers extends Activity {
             
             
             
-            ListPlayersAPI api = new ListPlayersAPI(getApplicationContext(), 2, nom, gameCode, TourneyID);    //identifiant du tournoi a afficher
+            AddPlayerAPI api = new AddPlayerAPI(getApplicationContext(), 2, nom, gameCode, TourneyID,"Toto");    //identifiant du tournoi a afficher
             return api;
         }
         
@@ -173,12 +167,12 @@ public class ListPlayers extends Activity {
             // On s'assure que l'objet de retour existe
             // et qu'il n'ait pas d'erreurs
             if( api == null ) {
-                Toast.makeText(ListPlayers.this, getText(R.string.api_vide), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddPlayerActivity.this, getText(R.string.api_vide), Toast.LENGTH_SHORT).show();
                 return;
             }
             
             if( api.error != null ) {
-                Toast.makeText(ListPlayers.this, api.error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddPlayerActivity.this, api.error, Toast.LENGTH_SHORT).show();
                 return;
             }
             

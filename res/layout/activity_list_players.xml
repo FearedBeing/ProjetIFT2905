@@ -7,21 +7,18 @@
     android:background="@color/BackGroundColor"
     tools:ignore="MergeRootFrame" >
 
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="355dp"
+        android:layout_marginTop="50dp" >
+
+    </ListView>
+
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
-
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp" >
-        
-
-    </ListView>
+        android:text="Ajouter" />
 
 </FrameLayout>
-
-

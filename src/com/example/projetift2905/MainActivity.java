@@ -14,14 +14,13 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -159,6 +158,13 @@ public class MainActivity extends FragmentActivity {
 			}
 		});	
         
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.d("DATA","onResume");
+		new DownloadLoginTask().execute();
 	}
 	
 	public void notifyFragmentDataSetChanged(){
