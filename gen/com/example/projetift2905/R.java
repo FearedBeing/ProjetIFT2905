@@ -38,53 +38,6 @@ public final class R {
         public static final int owner_imageview=0x7f020006;
     }
     public static final class id {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        public static final int LinearLayout1=0x7f0a001c;
-        public static final int LogoImage=0x7f0a002a;
-        public static final int ValiderCreerTournoi=0x7f0a0004;
-        public static final int action_settings=0x7f0a002b;
-        public static final int button1=0x7f0a0016;
-        public static final int buttonDelete=0x7f0a0007;
-        public static final int buttonToCreerTournoi=0x7f0a0017;
-        public static final int container=0x7f0a0015;
-        public static final int editNomNewTournoi=0x7f0a0002;
-        public static final int favoriButton=0x7f0a0027;
-        public static final int filtreJeu=0x7f0a0001;
-        public static final int filtreNom=0x7f0a0006;
-        public static final int filtres=0x7f0a0018;
-        public static final int imageView1=0x7f0a0005;
-        public static final int left_player=0x7f0a0025;
-        public static final int left_player_name=0x7f0a0020;
-        public static final int left_player_score=0x7f0a0023;
-        public static final int listTournois=0x7f0a001b;
-        public static final int list_results=0x7f0a001d;
-        public static final int mainRootContainer=0x7f0a0000;
-        public static final int nomTournoi=0x7f0a0029;
-        public static final int ownedImage=0x7f0a0028;
-        public static final int pager=0x7f0a0019;
-        public static final int popupContainer=0x7f0a001e;
-        public static final int popupLine1=0x7f0a001f;
-        public static final int popupLine2=0x7f0a0022;
-        public static final int popupOk=0x7f0a0014;
-        public static final int popup_jeu=0x7f0a0024;
-        public static final int popup_titre=0x7f0a0021;
-        public static final int results_pager=0x7f0a001a;
-        public static final int right_player=0x7f0a0026;
-        public static final int right_player_name=0x7f0a000b;
-        public static final int right_player_score=0x7f0a0009;
-        public static final int spinner1=0x7f0a0003;
-        public static final int textView10=0x7f0a000f;
-        public static final int textView11=0x7f0a0010;
-        public static final int textView12=0x7f0a0011;
-        public static final int textView13=0x7f0a0012;
-        public static final int textView5=0x7f0a0008;
-        public static final int textView6=0x7f0a000a;
-        public static final int textView7=0x7f0a000c;
-        public static final int textView8=0x7f0a000d;
-        public static final int textView9=0x7f0a000e;
-        public static final int tourney_results=0x7f0a0013;
-=======
         public static final int IMGBTNDelete=0x7f0a000b;
         public static final int LogoImage=0x7f0a0028;
         public static final int ValiderCreerTournoi=0x7f0a0008;
@@ -114,37 +67,6 @@ public final class R {
         public static final int popup_jeu=0x7f0a0024;
         public static final int popup_titre=0x7f0a0022;
         public static final int spinner1=0x7f0a0003;
-=======
-        public static final int IMGBTNDelete=0x7f0a000b;
-        public static final int LogoImage=0x7f0a0028;
-        public static final int ValiderCreerTournoi=0x7f0a0008;
-        public static final int action_settings=0x7f0a0029;
-        public static final int button1=0x7f0a001a;
-        public static final int button2=0x7f0a0017;
-        public static final int buttonToCreerTournoi=0x7f0a001c;
-        public static final int container=0x7f0a0019;
-        public static final int editNomNewTournoi=0x7f0a0002;
-        public static final int editTextDescription=0x7f0a0005;
-        public static final int editTextInvit=0x7f0a0007;
-        public static final int favoriButton=0x7f0a0025;
-        public static final int filtreJeu=0x7f0a0001;
-        public static final int filtreNom=0x7f0a000a;
-        public static final int filtres=0x7f0a001d;
-        public static final int imageView1=0x7f0a0009;
-        public static final int listTournois=0x7f0a001f;
-        public static final int listView1=0x7f0a001b;
-        public static final int mainRootContainer=0x7f0a0000;
-        public static final int nomTournoi=0x7f0a0027;
-        public static final int ownedImage=0x7f0a0026;
-        public static final int pager=0x7f0a001e;
-        public static final int popupContainer=0x7f0a0020;
-        public static final int popupLine1=0x7f0a0021;
-        public static final int popupLine2=0x7f0a0023;
-        public static final int popupOk=0x7f0a0018;
-        public static final int popup_jeu=0x7f0a0024;
-        public static final int popup_titre=0x7f0a0022;
-        public static final int spinner1=0x7f0a0003;
->>>>>>> d56641035c6c753ff9ebee554b4761602ecb46e8
         public static final int textView1=0x7f0a0006;
         public static final int textView10=0x7f0a0013;
         public static final int textView11=0x7f0a0014;
@@ -158,10 +80,6 @@ public final class R {
         public static final int textView7=0x7f0a0010;
         public static final int textView8=0x7f0a0011;
         public static final int textView9=0x7f0a0012;
-<<<<<<< HEAD
->>>>>>> d56641035c6c753ff9ebee554b4761602ecb46e8
-=======
->>>>>>> d56641035c6c753ff9ebee554b4761602ecb46e8
     }
     public static final class layout {
         public static final int activity_creer_tournoi=0x7f030000;

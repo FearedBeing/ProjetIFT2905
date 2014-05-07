@@ -91,21 +91,6 @@ public class DetailsTournoi extends Activity {
                     
                 }
             });
-<<<<<<< HEAD
-<<<<<<< HEAD
-        
-        ((Button)findViewById(R.id.tourney_results)).setOnClickListener(new OnClickListener() {
-            @Override
-                public void onClick(View arg0) {
-            	 Intent i = new Intent(DetailsTournoi.this, TourneyResults.class);
-                 i.putExtra("TourneyID", TourneyID);
-                 startActivity(i);     
-                }
-            });
-=======
->>>>>>> d56641035c6c753ff9ebee554b4761602ecb46e8
-=======
->>>>>>> d56641035c6c753ff9ebee554b4761602ecb46e8
     }
     
     @Override
