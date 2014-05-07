@@ -7,11 +7,10 @@
     tools:context="com.example.projetift2905.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-
      <Button
          android:id="@+id/buttonToCreerTournoi"
          style="?android:attr/buttonStyleSmall"
-         android:layout_width="wrap_content"
+         android:layout_width="fill_parent"
          android:layout_height="wrap_content"
          android:text="CreerTournoi" />
 
@@ -19,7 +18,8 @@
          android:id="@+id/filtres"
          android:layout_width="match_parent"
          android:layout_height="52dp"
-         android:layout_gravity="bottom" >
+         android:layout_gravity="bottom"
+         android:scrollbarAlwaysDrawVerticalTrack="false" >
 
      </ListView>
 
@@ -29,7 +29,9 @@
          android:layout_width="fill_parent"
          android:layout_height="350dp"
          android:layout_gravity="center_vertical"
-         android:layout_weight="0.5" >
+         android:layout_weight="0.5"
+         android:scrollbarStyle="insideOverlay"
+         android:scrollbars="vertical" >
 
      </android.support.v4.view.ViewPager>
 

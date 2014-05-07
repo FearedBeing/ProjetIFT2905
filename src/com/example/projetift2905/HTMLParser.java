@@ -15,13 +15,21 @@ import android.util.Log;
 public class HTMLParser{
 	private Document mainDoc;
 	
-	public HTMLParser(String http){
-		try {
-			this.mainDoc = Jsoup.connect(http).get();
-		} catch (IOException e) {
-			Log.e("DATA","[HTMLParser] Erreur HTTP (IO) :"+e.getMessage());
-			e.printStackTrace();
+	public HTMLParser(String html){
+		if(html.length() < 25){
+			// Tourney ID
+			try {
+				this.mainDoc = Jsoup.connect("http://www.binarybeast.com/" + html).get();
+			} catch (IOException e) {
+				//Log.e("DATA","[HTMLParser] Erreur HTTP (IO) :"+e.getMessage());
+				e.printStackTrace();
+			}
+		}else{
+			// Texte HTML
+			this.mainDoc = Jsoup.parse(html);
 		}
+		
+		
 	}
 	
 	public ArrayList<String> getBracketTypes(){
@@ -32,6 +40,12 @@ public class HTMLParser{
 			Element elem = it.next();
 			String id = elem.id();
 			if(!id.equals("") && !id.contains("bracket")){
+				if(id.equals("winners")){
+					Elements rounds = elem.select("div.Map");
+					if(rounds.first().text().equals("3rd Place Match")){
+						id = "bronze";
+					}
+				}
 				retour.add(id);
 			}
 			
@@ -41,7 +55,12 @@ public class HTMLParser{
 	
 	public ArrayList<String> getRoundsName(String bracketName){
 		ArrayList<String> retour = new ArrayList<String>();
-		Element bracket = mainDoc.select("div#"+bracketName).first();
+		Element bracket;
+		if(bracketName.equals("bronze")){
+			bracket = mainDoc.select("div#winners").last();
+		}else{
+			bracket = mainDoc.select("div#"+bracketName).first();
+		}
 		Elements rounds = bracket.select("div.Map");
 		ListIterator<Element> it = rounds.listIterator();
 		while(it.hasNext()){
@@ -54,7 +73,12 @@ public class HTMLParser{
 	
 	public ArrayList<Integer> getBestOfPerRound(String bracketName){
 		ArrayList<Integer> retour = new ArrayList<Integer>();
-		Element bracket = mainDoc.select("div#"+bracketName).first();
+		Element bracket;
+		if(bracketName.equals("bronze")){
+			bracket = mainDoc.select("div#winners").last();
+		}else{
+			bracket = mainDoc.select("div#"+bracketName).first();
+		}
 		Elements bo = bracket.select("div.BestOf");
 		ListIterator<Element> it = bo.listIterator();
 		while(it.hasNext()){
@@ -68,7 +92,12 @@ public class HTMLParser{
 	
 	public ArrayList<MatchData> getMatchDataPerRound(String bracketName, String roundName){
 		ArrayList<MatchData> retour = new ArrayList<MatchData>();
-		Element bracket = mainDoc.select("div#"+bracketName).first();
+		Element bracket;
+		if(bracketName.equals("bronze")){
+			bracket = mainDoc.select("div#winners").last();
+		}else{
+			bracket = mainDoc.select("div#"+bracketName).first();
+		}
 		Elements allRounds = bracket.select("div.BracketColumn");
 		Element round = null;
 		ListIterator<Element> i = allRounds.listIterator();
@@ -116,15 +145,18 @@ public class HTMLParser{
 		return retour;
 	}
 	
-	private class MatchData{
-		public final String player1, player2, matchID;
-		public final int scoreP1, scoreP2;
+	public String getHTML(){
+		return mainDoc.html();
+	}
+	
+	public class MatchData{
+		public final String player1, player2, matchID, scoreP1, scoreP2;
 		
 		public MatchData(String player1, int scoreP1, String player2, int scoreP2, String matchID){
 			this.player1 = player1;
-			this.scoreP1 = scoreP1;
+			this.scoreP1 = scoreP1 + "";
 			this.player2 = player2;
-			this.scoreP2 = scoreP2;
+			this.scoreP2 = scoreP2 + "";
 			this.matchID = matchID;
 		}
 	}

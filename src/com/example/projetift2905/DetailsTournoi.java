@@ -5,7 +5,7 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-//
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -21,6 +21,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -67,8 +68,6 @@ public class DetailsTournoi extends Activity {
         status=(TextView)findViewById(R.id.textView13);
         teamsConfirmedCount=(TextView)findViewById(R.id.textView11);
         
-        
-        
         ((Button)findViewById(R.id.popupOk)).setOnClickListener(new OnClickListener() {
             @Override
                 public void onClick(View arg0) {
@@ -81,23 +80,36 @@ public class DetailsTournoi extends Activity {
                     
                 }
             });    
-        
-        
-        ((Button)findViewById(R.id.buttonDelete)).setOnClickListener(new OnClickListener() {
+                
+        ((ImageButton)findViewById(R.id.IMGBTNDelete)).setOnClickListener(new OnClickListener() {
             @Override
                 public void onClick(View arg0) {
                             
                     deleteTournoi=1;
+                    (new SaveLoad(getApplicationContext())).removeFavorite(TourneyID);
                     new DownloadLoginTask().execute();    
                     
                 }
-            });    
+            });
+<<<<<<< HEAD
+<<<<<<< HEAD
         
+        ((Button)findViewById(R.id.tourney_results)).setOnClickListener(new OnClickListener() {
+            @Override
+                public void onClick(View arg0) {
+            	 Intent i = new Intent(DetailsTournoi.this, TourneyResults.class);
+                 i.putExtra("TourneyID", TourneyID);
+                 startActivity(i);     
+                }
+            });
+=======
+>>>>>>> d56641035c6c753ff9ebee554b4761602ecb46e8
+=======
+>>>>>>> d56641035c6c753ff9ebee554b4761602ecb46e8
     }
     
     @Override
     protected void onResume() {
-        // TODO Auto-generated method stub
         super.onResume();
         
         Intent intent = getIntent();

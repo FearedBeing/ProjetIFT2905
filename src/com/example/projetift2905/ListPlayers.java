@@ -1,5 +1,8 @@
 package com.example.projetift2905;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -21,8 +24,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +37,7 @@ public class ListPlayers extends Activity {
     
     ListPlayersAPI api;
     String gameCode;
+    private ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,17 @@ public class ListPlayers extends Activity {
         getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         
         setContentView(R.layout.activity_list_players);
+        
+        
+        
+        
+        
+        
+        lv = (ListView) findViewById(R.id.listView1);
+
+        
+        
+        
         
         this.api = null;
         
@@ -149,6 +166,32 @@ public class ListPlayers extends Activity {
             }
             
             setApi(api);
+        }
+        protected void onPostExecute(ListPlayersAPI api) {
+            setProgressBarIndeterminateVisibility(false);
+            
+            // On s'assure que l'objet de retour existe
+            // et qu'il n'ait pas d'erreurs
+             List<String> your_array_list = new ArrayList<String>();
+                your_array_list.add("foo");
+                your_array_list.add("bar");
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                    getApplicationContext(), 
+                    android.R.layout.simple_list_item_1,
+                    api.names );
+            lv.setAdapter(arrayAdapter);
+            
+            
+                
+                
+                
+                
+                
+                
+                
+            Toast.makeText(getApplicationContext(), "toto", Toast.LENGTH_LONG).show();
+            
+            
         }
     }    
     

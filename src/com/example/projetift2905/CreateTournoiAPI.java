@@ -39,11 +39,12 @@ public class CreateTournoiAPI {
 		}
 	}
 	
-	CreateTournoiAPI(Context ctx, int typeID, String title, String gameCode){
+	CreateTournoiAPI(Context ctx, int typeID, String title, String gameCode, String playersToInvite){
 		
 		error = null;
 		
 		System.out.println("Debug: "+title+" //"+gameCode);
+		System.out.println("Debug: playersToInvite: "+playersToInvite);
 		
 		//TourneyData infoTournoi;
 		String apiCallp1 = "https://api.binarybeast.com/?APIService=Tourney.TourneyCreate.Create&";
@@ -57,6 +58,12 @@ public class CreateTournoiAPI {
 		argTypeID=argTypeID.concat("0");
 		argTypeID=argTypeID.concat("&");
 		
+		String argTeams = "Teams=";
+		argTeams=argTeams.concat(playersToInvite);
+		
+		
+		argTeams=argTeams.concat("&");
+		
 		String argTypeGameCode = "GameCode=";
 		argTypeGameCode=argTypeGameCode.concat(gameCode);
 		//argTypeID=argTypeID.concat("&");
@@ -67,11 +74,18 @@ public class CreateTournoiAPI {
 		
 		//String apiCall = apiCallp1+argTitle+argTypeID+apiCallp2;
 		String apiCall = apiCallp1+apiCallp2;
+		System.out.println("1/CREATE TOURNOI API: "+apiCall);
 		apiCall+=argTitle;
 		apiCall+=argTypeID;
+		
+		apiCall+="Public=1&";
+		
+		//apiCall=apiCall.concat("Teams=MajorSauce,,JMMouth");
+		apiCall+=argTeams;
+		
 		apiCall+=argTypeGameCode;
 		
-		System.out.println("CREATE TOURNOI API: "+apiCall);
+		System.out.println("2/CREATE TOURNOI API: "+apiCall);
 		
 		//String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyLoad.Info&TourneyID=xSC214042710&APIReturn=json&APIKey=4904a28e5c92f5919f7fcc2e716597e8.5350362f7b2669.06156210";			
 		

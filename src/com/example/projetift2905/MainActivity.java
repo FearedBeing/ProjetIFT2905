@@ -94,7 +94,7 @@ public class MainActivity extends FragmentActivity {
                     public void onPageSelected(int position) {
                         getActionBar().setSelectedNavigationItem(position);
                     }
-                });
+        });
         
         /* *******************************
 		 * CREATION DU POP-UP DES FILTRES

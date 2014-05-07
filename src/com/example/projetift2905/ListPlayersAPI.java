@@ -26,6 +26,7 @@ public class ListPlayersAPI {
     public List<TourneyData> infoForId;
     public String error;
     String TourneyID;
+    public List<String> names;
     
     public class TourneyData{
         public final String TourneyTeamID,points,group,DisplayName,Losses,Wins;
@@ -74,6 +75,7 @@ public class ListPlayersAPI {
         
         System.out.println("CREATE TOURNOI API: "+apiCall);
         List<TourneyData> lst = new ArrayList<TourneyData>();
+        List<String> noms = new ArrayList<String>();
         try{
             
             HttpEntity page = getHttp(apiCall);
@@ -84,6 +86,7 @@ public class ListPlayersAPI {
             while(i<js.getJSONArray("Teams").length()){
                 System.out.println(i+":Teams");
                 String TourneyTeamID=js.getJSONArray("Teams").getJSONObject(i).getString("TourneyTeamID");
+                String DisplayName=js.getJSONArray("Teams").getJSONObject(i).getString("DisplayName");
                 /*System.out.println(i+":ID");
                 String group=js.getJSONArray("Teams").getJSONObject(i).getString("Group");
                 System.out.println(i+":Points");
@@ -95,14 +98,16 @@ public class ListPlayersAPI {
                 System.out.println(i+":Wins");
                 String Wins=js.getJSONArray("Teams").getJSONObject(i).getString("Wins");
                 */
-                TourneyData td = new TourneyData(TourneyTeamID,"A","0","X","0","0");
+                TourneyData td = new TourneyData(TourneyTeamID,"A","0",DisplayName,"0","0");
                 lst.add(td);
+                noms.add(DisplayName);
                 
                 i++;
             }
             this.infoForId=lst;
+            this.names=noms;
             for(i=0;i<this.infoForId.size();i++){
-                System.out.println(this.infoForId.get(i).TourneyTeamID);
+                System.out.println(this.infoForId.get(i).DisplayName);
             }
             
         } catch (ClientProtocolException e) {

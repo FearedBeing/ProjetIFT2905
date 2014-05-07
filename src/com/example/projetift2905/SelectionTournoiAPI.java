@@ -62,7 +62,7 @@ public class SelectionTournoiAPI {
 			}
 			
 			// TOURNOIS FAVORIS
-			for(String fav: (new SaveLoad(ctx)).getFavorites()){
+			/*for(String fav: (new SaveLoad(ctx)).getFavorites()){
 				if(fav != null){
 					apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyLoad.Info&APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY) + "&TourneyID=" + fav;
 					page = getHttp(apiCall);
@@ -85,7 +85,7 @@ public class SelectionTournoiAPI {
 					dataList.remove(getTourneyById(dataList, tourney.tourneyID));  // Si existe deja on retire (car celui dans dataList a été initialisé avec ownership == false
 				}
 				dataList.add(tourney);
-			}
+			}*/
 			
 		} catch (ClientProtocolException e) {
 			error = "[SelectionTournoiAPI] Erreur HTTP (protocole) :"+e.getMessage();
