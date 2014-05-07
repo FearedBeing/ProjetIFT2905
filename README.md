@@ -30,14 +30,11 @@
 ##Résultats tournois##
 ###1.Fait:###
 >- Parser HTML
+>- Listage des matchs avec gagnant
 
 ###2.A faire:###
->- L'activité au complet
+>- Clicker sur un match pour mettre le resultat a jour (proprietaire seulement)
 
 
 ##Résultats match##
-###1.Fait:###
->- Rien
-
-###2.A faire:###
->- Tout
+>- Abolie (voir #23)
