@@ -28,7 +28,7 @@
     <string name="title_activity_list_players_api">ListPlayersAPI</string>
     <string name="title_activity_list_players">Liste des Joueurs</string>
     <string name="title_activity_tourney_results">Résultats</string>
-    
     <string name="versus">vs</string>
+    <string name="title_activity_add_player">AddPlayerActivity</string>
 
 </resources>

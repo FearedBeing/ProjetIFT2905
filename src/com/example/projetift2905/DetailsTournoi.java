@@ -72,7 +72,6 @@ public class DetailsTournoi extends Activity {
             @Override
                 public void onClick(View arg0) {
                             
-                    Toast.makeText(DetailsTournoi.this, "Toto", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(DetailsTournoi.this, ListPlayers.class);
                     System.out.println("ID Tournoi avant le transfert : "+TourneyID);
                     i.putExtra("TourneyID", TourneyID);

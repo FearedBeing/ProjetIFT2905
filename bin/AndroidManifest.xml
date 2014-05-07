@@ -52,6 +52,10 @@
             android:name="com.example.projetift2905.TourneyResults"
             android:label="@string/title_activity_tourney_results" >
         </activity>
+        <activity
+            android:name="com.example.projetift2905.AddPlayerActivity"
+            android:label="@string/title_activity_add_player" >
+        </activity>
     </application>
 
 </manifest>
