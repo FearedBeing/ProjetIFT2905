@@ -56,6 +56,14 @@
             android:name="com.example.projetift2905.AddPlayerActivity"
             android:label="@string/title_activity_add_player" >
         </activity>
+        <activity
+            android:name="com.example.projetift2905.SupprimerJoueurAPI"
+            android:label="@string/title_activity_supprimer_joueur_api" >
+        </activity>
+        <activity
+            android:name="com.example.projetift2905.SupprimerJoueur"
+            android:label="@string/title_activity_supprimer_joueur" >
+        </activity>
     </application>
 
 </manifest>

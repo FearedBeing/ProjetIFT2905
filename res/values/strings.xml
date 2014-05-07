@@ -30,5 +30,7 @@
     <string name="title_activity_tourney_results">Résultats</string>
     <string name="versus">vs</string>
     <string name="title_activity_add_player">AddPlayerActivity</string>
+    <string name="title_activity_supprimer_joueur_api">SupprimerJoueurAPI</string>
+    <string name="title_activity_supprimer_joueur">SupprimerJoueur</string>
 
 </resources>
