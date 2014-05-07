@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ProjetIFT2905</string>
+    <string name="app_name">Projet 2905</string>
     <string name="action_settings">Settings</string>
     <string name="API_KEY">3ad9fe9061f6dfe3f0d7d495a3bf8611.533c43d1901466.70692389</string>
 
     <!-- Ressources pour MainActivity -->
-    <string name="title_activity_">SelectionTournoi</string>
+    <string name="title_activity_">Selection de Tournois</string>
     <string name="title_section1">Tous les tournois</string>
     <string name="title_section2">Favoris</string>
     <string name="title_section3">Mes tournois</string>
     <string name="api_vide">API Vide</string>
     <string name="filtrer">Filtrer</string>
-    <string name="title_activity_details_tournoi">DetailsTournoi</string>
+    <string name="title_activity_details_tournoi">Details du Tournois</string>
     <string name="InfoTourneyId">xSC214042710</string>
-    <string name="title_activity_creer_tournoi">CreerTournoi</string>
+    <string name="title_activity_creer_tournoi">Creer un Tournoi</string>
 
     <string-array name="games">
         <item><string name="LoL">LoL</string></item>
@@ -22,10 +22,10 @@
         <item><string name="CSS">CSS</string></item>
     </string-array>
 
-    <string name="title_activity_list_teams">ListTeams</string>
+    <string name="title_activity_list_teams">Liste des Équipes</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_list_players_api">ListPlayersAPI</string>
-    <string name="title_activity_list_players">ListPlayers</string>
-    <string name="title_activity_tourney_results">TourneyResults</string>
+    <string name="title_activity_list_players">Liste des Joueurs</string>
+    <string name="title_activity_tourney_results">Résultats</string>
 
 </resources>

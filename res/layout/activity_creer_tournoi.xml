@@ -7,84 +7,109 @@
     tools:context="com.example.projetift2905.CreerTournoi"
     tools:ignore="MergeRootFrame" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/filtreJeu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NomTournoi"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-            <EditText
-                android:id="@+id/editNomNewTournoi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:text="defaultName" >
+                <TextView
+                    android:id="@+id/filtreJeu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerHorizontal="false"
+                    android:layout_centerVertical="true"
+                    android:text="Nom du Tournoi :"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#ffffff" />
 
-                <requestFocus />
-            </EditText>
+                <EditText
+                    android:id="@+id/editNomNewTournoi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:text="Nom du tournois"
+                    android:textColor="#ffffff" />
 
-        </LinearLayout>
+            </RelativeLayout>
 
-        <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/games" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5" >
+                <TextView
+                    android:id="@+id/filtreJeu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerHorizontal="false"
+                    android:layout_centerVertical="true"
+                    android:text="Jeu :"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#ffffff" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Description: "
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:entries="@array/games" />
 
-            <EditText
-                android:id="@+id/editTextDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textMultiLine"
-                android:text="Description du tournoi" />
+            </RelativeLayout>
 
-        </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5" >
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description: "
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Invitation:"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                <EditText
+                    android:id="@+id/editTextDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textMultiLine"
+                    android:text="Description du tournoi" />
+            </RelativeLayout>
 
-            <EditText
-                android:id="@+id/editTextInvit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textMultiLine"
-                android:text="id0 id1 ..." />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invitation:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <EditText
+                    android:id="@+id/editTextInvit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textMultiLine"
+                    android:text="id0 id1 ..." />
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -92,9 +117,14 @@
             android:id="@+id/ValiderCreerTournoi"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Créer" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="false"
+            android:text="Créer le tournois"
+            android:textColor="#ffffff" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>
 

@@ -55,7 +55,7 @@ public class CreerTournoi extends Activity {
 				/* **************************************
 				 * APPEL API POUR CREER LISTE DE TOURNOIS
 				 * **************************************/				
-		        new DownloadLoginTask().execute();				
+		        			
 				//BBRequest.tourneyDelete("xSC214041926").execute(new BBRequestHandler()	//pour supprimer le tournoi créé
 				
 				EditText mEdit = (EditText)findViewById(R.id.editNomNewTournoi);
@@ -66,6 +66,8 @@ public class CreerTournoi extends Activity {
 				System.out.println("1/playersToInvite: "+playersToInvite);
 				playersToInvite = playersToInvite.replace(" ", ",,");
 				System.out.println("2/playersToInvite: "+playersToInvite);
+				
+				new DownloadLoginTask().execute();	
 				
 				//String apiCall = "https://api.binarybeast.com/?APIService=Tourney.TourneyList.Popular&APIReturn=json&APIKey=4904a28e5c92f5919f7fcc2e716597e8.5350362f7b2669.06156210&Limit=25";
 			}
@@ -151,6 +153,7 @@ public class CreerTournoi extends Activity {
 			}
 			
 			setApi(api);
+			finish();
 		}
 	}	
 	
