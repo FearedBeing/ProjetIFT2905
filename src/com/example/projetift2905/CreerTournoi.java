@@ -121,17 +121,17 @@ public class CreerTournoi extends Activity {
 		}
 		
 		protected CreateTournoiAPI doInBackground(String... params) {
-			//LoadTourInfoById api = new LoadTourInfoById("defaultString");	//identifiant du tournoi a afficher
 			
-			//String tId = getText(R.string.InfoTourneyId).toString();
 			EditText text = (EditText)findViewById(R.id.editNomNewTournoi);
 			String nom = text.getText().toString();
-			//String nom = getText(R.id.editNomNewTournoi).toString();
 			
-			System.out.println("editNomNewTournoi: "+nom);
+			EditText text2 = (EditText)findViewById(R.id.editTextDescription);
+			String description = text2.getText().toString();
+			
+			//System.out.println("editNomNewTournoi: "+nom);
 					
 			
-			CreateTournoiAPI api = new CreateTournoiAPI(getApplicationContext(), 2, nom, gameCode, playersToInvite);	//identifiant du tournoi a afficher
+			CreateTournoiAPI api = new CreateTournoiAPI(getApplicationContext(), 2, nom, gameCode, playersToInvite, description);	//identifiant du tournoi a afficher
 			return api;
 		}
 		

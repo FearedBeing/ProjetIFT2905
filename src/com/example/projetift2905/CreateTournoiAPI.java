@@ -39,7 +39,7 @@ public class CreateTournoiAPI {
 		}
 	}
 	
-	CreateTournoiAPI(Context ctx, int typeID, String title, String gameCode, String playersToInvite){
+	CreateTournoiAPI(Context ctx, int typeID, String title, String gameCode, String playersToInvite, String description){
 		
 		error = null;
 		
@@ -51,12 +51,17 @@ public class CreateTournoiAPI {
 		String apiCallp2 = "APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY) + "&";
 		
 		String argTitle = "Title=";
-		argTitle=argTitle.concat(title);
+		argTitle=argTitle.concat(title.replaceAll(" ", "%20"));
 		argTitle=argTitle.concat("&");
 		
 		String argTypeID = "TypeID=";
 		argTypeID=argTypeID.concat("0");
 		argTypeID=argTypeID.concat("&");
+		
+		String argDescription = "Description=";
+		argDescription=argDescription.concat(description);
+		argDescription=argDescription.concat("&");
+		argDescription=argDescription.replaceAll(" ", "%20");
 		
 		String argTeams = "Teams=";
 		argTeams=argTeams.concat(playersToInvite);
@@ -76,6 +81,7 @@ public class CreateTournoiAPI {
 		String apiCall = apiCallp1+apiCallp2;
 		System.out.println("1/CREATE TOURNOI API: "+apiCall);
 		apiCall+=argTitle;
+		apiCall+=argDescription;
 		apiCall+=argTypeID;
 		
 		apiCall+="Public=1&";
