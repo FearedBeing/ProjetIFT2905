@@ -21,7 +21,7 @@ public class HTMLParser{
 			try {
 				this.mainDoc = Jsoup.connect("http://www.binarybeast.com/" + html).get();
 			} catch (IOException e) {
-				//Log.e("DATA","[HTMLParser] Erreur HTTP (IO) :"+e.getMessage());
+				Log.e("DATA","[HTMLParser] Erreur HTTP (IO) :"+e.getMessage());
 				e.printStackTrace();
 			}
 		}else{
@@ -104,6 +104,7 @@ public class HTMLParser{
 		boolean done = false;
 		while(i.hasNext() && !done){
 			Element rnd = i.next();
+			Log.d("DATA", rnd.select("div.Map").size()+"");
 			Element rndName = rnd.select("div.Map").first();
 			if(rndName.text().equals(roundName)){
 				round = rnd;
