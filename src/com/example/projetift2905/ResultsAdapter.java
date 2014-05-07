@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.projetift2905.HTMLParser.MatchData;
@@ -64,6 +65,19 @@ public class ResultsAdapter extends BaseAdapter{
 		
 		TextView scoreRight = (TextView)view.findViewById(R.id.right_player_score);
 		scoreRight.setText(matchData.scoreP2);
+		
+		LinearLayout left = (LinearLayout)view.findViewById(R.id.left_player);
+		LinearLayout right = (LinearLayout)view.findViewById(R.id.right_player);
+		if(matchData.winner.equals("1")){
+			left.setBackgroundColor(view.getResources().getColor(R.color.winner_color));
+			right.setBackgroundColor(view.getResources().getColor(R.color.white));
+		}else if(matchData.winner.equals("2")){
+			left.setBackgroundColor(view.getResources().getColor(R.color.white));
+			right.setBackgroundColor(view.getResources().getColor(R.color.winner_color));
+		}else{
+			left.setBackgroundColor(view.getResources().getColor(R.color.white));
+			right.setBackgroundColor(view.getResources().getColor(R.color.white));
+		}
 		
 		return view;
 	}

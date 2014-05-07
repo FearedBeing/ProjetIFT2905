@@ -29,7 +29,7 @@ public class TourneyResultsFragment extends Fragment{
         this.roundType = args.getString("round");
         this.parser = new HTMLParser(args.getString("html"));
         
-        this.dataList = this.parser.getMatchDataPerRound(this.bracketType, this.roundType);
+        this.dataList = this.parser.getMatchDataPerRound(this.bracketType, roundType);
         this.mainAdapter = new ResultsAdapter(rootView.getContext(), this.dataList);
         this.mainList = (ListView) rootView.findViewById(R.id.list_results);
         this.mainList.setAdapter(this.mainAdapter);
@@ -40,10 +40,7 @@ public class TourneyResultsFragment extends Fragment{
 	
 	private class MainListOnItemClick implements OnItemClickListener{
 		public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-			/*Intent i = new Intent(getActivity().getApplicationContext(), DetailsTournoi.class);
-			System.out.println("dataList.get(position).tourneyID: "+dataList.get(position).tourneyID);
-			i.putExtra("TourneyID", dataList.get(position).tourneyID);
-			startActivity(i);*/
+			// vide
 		}
 	}
 
