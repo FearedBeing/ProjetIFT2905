@@ -91,6 +91,15 @@ public class DetailsTournoi extends Activity {
                     
                 }
             });
+        
+        ((Button)findViewById(R.id.tourney_results)).setOnClickListener(new OnClickListener() {
+            @Override
+                public void onClick(View arg0) {
+                    Intent i = new Intent(DetailsTournoi.this, TourneyResults.class);
+                    i.putExtra("TourneyID", TourneyID);
+                    startActivity(i);
+                }
+            }); 
     }
     
     @Override

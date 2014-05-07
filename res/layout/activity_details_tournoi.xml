@@ -17,7 +17,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:layout_marginBottom="30dp"
-           android:textAlignment="center" >
+           android:gravity="center">
 
             <ImageView
                 android:id="@+id/imageView1"
@@ -55,7 +55,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="0.1" >
+            android:layout_weight="0.1" 
+            >
 
             <TextView
                 android:id="@+id/filtreJeu"
@@ -180,9 +181,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:textAlignment="textEnd"
-                android:textAppearance="?android:attr/textAppearanceMedium" 
-                android:textColor="#ffffff"/>
+                android:gravity="end"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff" />
 
         </RelativeLayout>
 
@@ -207,10 +208,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:gravity="center"
                 android:text="Chargement..."
-                android:textAlignment="gravity"
-                android:textAppearance="?android:attr/textAppearanceMedium" 
-                android:textColor="#ffffff"/>
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff" />
 
         </RelativeLayout>
 
