@@ -26,6 +26,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +41,7 @@ public class ListPlayers extends Activity {
     ListPlayersAPI api;
     String gameCode;
     private ListView lv;
+    String TourTeamID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,6 +196,122 @@ public class ListPlayers extends Activity {
              //List<String> your_array_list = new ArrayList<String>();
                 //your_array_list.add("foo");
                 //your_array_list.add("bar");
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                    getApplicationContext(), 
+                    android.R.layout.simple_list_item_1,
+                    api.names );
+            lv.setAdapter(arrayAdapter);
+            lv.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                        long id) {
+                    Intent intent = getIntent();
+                    String TourneyID = intent.getStringExtra("TourneyID");
+                    Intent i = new Intent(ListPlayers.this, SupprimerJoueur.class);
+                    i.putExtra("TourneyTeamID",api.infoForId.get(position).TourneyTeamID);
+                    i.putExtra("TourneyID", TourneyID);
+                    startActivity(i);
+                    
+                    System.out.println(position);
+                }
+            });
+            
+            
+                
+                
+                
+                
+                
+                
+                
+            
+            
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//NEWEND !!!!!!!!!!!!    
+private class DownloadLoginTask2 extends AsyncTask<String, String, SupprimerJoueurAPI> {
+        
+        protected void onPreExecute() {
+            setProgressBarIndeterminateVisibility(true);
+            lv.setOnItemLongClickListener(new OnItemLongClickListener()
+            {
+                   public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2,long arg3)
+                   {
+
+                       TourTeamID=api.infoForId.get(arg2).TourneyTeamID;
+                       return true;
+                   }
+           });
+        }
+        
+        protected SupprimerJoueurAPI doInBackground(String... params) {
+            EditText text = (EditText)findViewById(R.id.editNomNewTournoi);
+            //String nom = text.getText().toString();
+            
+            Intent intent = getIntent();
+            String TourneyID = intent.getStringExtra("TourneyID");
+            System.out.println("ID transfere :"+TourneyID);
+            String nom="ERRoR Tourney";
+            
+            
+            //String nom = getText(R.id.editNomNewTournoi).toString();
+            
+            System.out.println("editNomNewTournoi: "+nom);
+            
+            
+            
+            SupprimerJoueurAPI api = new SupprimerJoueurAPI(getApplicationContext(), 2, nom, gameCode, TourneyID,nom,TourTeamID);    //identifiant du tournoi a afficher
+            return api;
+        }
+        
+        protected void onProgressUpdate(String... s) {}
+        
+        protected void onPostExecute(CreateTournoiAPI api) {
+            setProgressBarIndeterminateVisibility(false);
+            
+            // On s'assure que l'objet de retour existe
+            // et qu'il n'ait pas d'erreurs
+            if( api == null ) {
+                Toast.makeText(ListPlayers.this, getText(R.string.api_vide), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            
+            if( api.error != null ) {
+                Toast.makeText(ListPlayers.this, api.error, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            
+            setApi(api);
+        }
+        protected void onPostExecute(final ListPlayersAPI api) {
+            setProgressBarIndeterminateVisibility(false);
+            
+            // On s'assure que l'objet de retour existe
+            // et qu'il n'ait pas d'erreurs
+             //List<String> your_array_list = new ArrayList<String>();
+                //your_array_list.add("foo");
+                //your_array_list.add("bar");
+            new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");                    
+            //Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();        //Pour verifier si la librairie
+
+            /* **************************************
+             * APPEL API POUR CREER LISTE DE TOURNOIS
+             * **************************************/                
+            new DownloadLoginTask2().execute();
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                     getApplicationContext(), 
                     android.R.layout.simple_list_item_1,
