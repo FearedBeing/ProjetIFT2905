@@ -55,7 +55,7 @@ public final class R {
         public static final int favoriButton=0x7f0a002e;
         public static final int filtreJeu=0x7f0a0004;
         public static final int filtreNom=0x7f0a000c;
-        public static final int filtres=0x7f0a001e;
+        public static final int filtres=0x7f0a001f;
         public static final int imageView1=0x7f0a000b;
         public static final int left_player=0x7f0a002b;
         public static final int left_player_name=0x7f0a0026;
@@ -66,7 +66,7 @@ public final class R {
         public static final int mainRootContainer=0x7f0a0003;
         public static final int nomTournoi=0x7f0a0030;
         public static final int ownedImage=0x7f0a002f;
-        public static final int pager=0x7f0a001f;
+        public static final int pager=0x7f0a001e;
         public static final int popupContainer=0x7f0a0024;
         public static final int popupLine1=0x7f0a0025;
         public static final int popupLine2=0x7f0a0028;

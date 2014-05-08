@@ -70,7 +70,7 @@ public class SupprimerJoueurAPI {
         apiCall+=argTypeID;
         apiCall+=argTypeGameCode;
         */
-        String apiCall="https://api.binarybeast.com/?APIService=Tourney.TourneyTeam.Delete&APIReturn=json&APIKey=4904a28e5c92f5919f7fcc2e716597e8.5350362f7b2669.06156210&TourneyID="+TourneyID+"&TourneyTeamID="+TourneyTeamID;
+        String apiCall="https://api.binarybeast.com/?APIService=Tourney.TourneyTeam.Delete&APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY) + "&TourneyID="+TourneyID+"&TourneyTeamID="+TourneyTeamID;
         //https://api.binarybeast.com/?APIService=Tourney.TourneyTeam.Insert&APIReturn=json&APIKey=4904a28e5c92f5919f7fcc2e716597e8.5350362f7b2669.06156210&TourneyID=xLOL14050712&DisplayName=Toto
         //xCSS1405071
         //1650165
