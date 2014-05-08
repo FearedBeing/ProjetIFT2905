@@ -141,6 +141,7 @@ public class AddPlayerActivity extends Activity {
         
         protected AddPlayerAPI doInBackground(String... params) {
             EditText text = (EditText)findViewById(R.id.editText1);
+            String value = text.getText().toString();
             //String nom = text.getText().toString();
             
             Intent intent = getIntent();
@@ -155,7 +156,7 @@ public class AddPlayerActivity extends Activity {
             
             
             
-            AddPlayerAPI api = new AddPlayerAPI(getApplicationContext(), 2, nom, gameCode, TourneyID,"Toto");    //identifiant du tournoi a afficher
+            AddPlayerAPI api = new AddPlayerAPI(getApplicationContext(), 2, nom, gameCode, TourneyID,value);    //identifiant du tournoi a afficher
             return api;
         }
         

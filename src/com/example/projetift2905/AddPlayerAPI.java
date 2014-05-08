@@ -70,7 +70,7 @@ public class AddPlayerAPI {
         apiCall+=argTypeID;
         apiCall+=argTypeGameCode;
         */
-        String apiCall="https://api.binarybeast.com/?APIService=Tourney.TourneyTeam.Insert&APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY) + "&TourneyID="+TourneyID+"&DisplayName="+"Toto";
+        String apiCall="https://api.binarybeast.com/?APIService=Tourney.TourneyTeam.Insert&APIReturn=json&APIKey=" + ctx.getResources().getString(R.string.API_KEY) + "&TourneyID="+TourneyID+"&DisplayName="+name;
         //https://api.binarybeast.com/?APIService=Tourney.TourneyTeam.Insert&APIReturn=json&APIKey=4904a28e5c92f5919f7fcc2e716597e8.5350362f7b2669.06156210&TourneyID=xLOL14050712&DisplayName=Toto
         //xLOL14050712
         //&DisplayName=Toto
