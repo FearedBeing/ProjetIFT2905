@@ -66,6 +66,7 @@ public class MainPagerFragment extends Fragment{
 			Intent i = new Intent(getActivity().getApplicationContext(), DetailsTournoi.class);
 			System.out.println("dataList.get(position).tourneyID: "+dataList.get(position).tourneyID);
 			i.putExtra("TourneyID", dataList.get(position).tourneyID);
+			i.putExtra("owned", dataList.get(position).owner);
 			startActivity(i);
 		}
 	}

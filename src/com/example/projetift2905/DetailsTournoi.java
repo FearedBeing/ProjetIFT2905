@@ -80,16 +80,24 @@ public class DetailsTournoi extends Activity {
                 }
             });    
                 
-        ((ImageButton)findViewById(R.id.IMGBTNDelete)).setOnClickListener(new OnClickListener() {
-            @Override
-                public void onClick(View arg0) {
-                            
-                    deleteTournoi=1;
-                    (new SaveLoad(getApplicationContext())).removeFavorite(TourneyID);
-                    new DownloadLoginTask().execute();    
-                    
-                }
-            });
+        ImageButton deleter = (ImageButton)findViewById(R.id.IMGBTNDelete);
+        if(getIntent().getBooleanExtra("owner", false)){
+        	// Bouton visible
+        	deleter.setOnClickListener(new OnClickListener() {
+                @Override
+                    public void onClick(View arg0) {
+                                
+                        deleteTournoi=1;
+                        (new SaveLoad(getApplicationContext())).removeFavorite(TourneyID);
+                        new DownloadLoginTask().execute();    
+                        
+                    }
+                });
+        }else{
+        	// Bouton invisible
+        	deleter.setVisibility(View.INVISIBLE);
+        }
+        
         
         ((Button)findViewById(R.id.tourney_results)).setOnClickListener(new OnClickListener() {
             @Override
