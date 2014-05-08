@@ -24,6 +24,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -184,7 +186,7 @@ public class ListPlayers extends Activity {
             
             setApi(api);
         }
-        protected void onPostExecute(ListPlayersAPI api) {
+        protected void onPostExecute(final ListPlayersAPI api) {
             setProgressBarIndeterminateVisibility(false);
             
             // On s'assure que l'objet de retour existe
@@ -197,6 +199,20 @@ public class ListPlayers extends Activity {
                     android.R.layout.simple_list_item_1,
                     api.names );
             lv.setAdapter(arrayAdapter);
+            lv.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                        long id) {
+                    Intent intent = getIntent();
+                    String TourneyID = intent.getStringExtra("TourneyID");
+                    Intent i = new Intent(ListPlayers.this, SupprimerJoueur.class);
+                    i.putExtra("TourneyTeamID",api.infoForId.get(position).TourneyTeamID);
+                    i.putExtra("TourneyID", TourneyID);
+                    startActivity(i);
+                    
+                    System.out.println(position);
+                }
+            });
             
             
                 
