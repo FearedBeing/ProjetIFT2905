@@ -22,14 +22,17 @@
             android:id="@+id/left_player_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
             android:layout_marginRight="10dp"
             android:text="Titre:"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffff" />
 
         <EditText
             android:id="@+id/popup_titre"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
             android:layout_weight="1"
             android:minWidth="150dp" >
 
@@ -48,24 +51,28 @@
             android:id="@+id/left_player_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
             android:layout_marginRight="10dp"
             android:text="Jeu  :"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffff" />
 
         <EditText
             android:id="@+id/popup_jeu"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
             android:minWidth="150dp" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/popupOk"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="25dp"
-        android:text="@string/filtrer" />
+        android:layout_margin="10dp"
+        android:text="@string/filtrer"
+        android:textColor="#ffffff" />
 
 </LinearLayout>
