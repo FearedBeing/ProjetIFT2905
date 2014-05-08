@@ -179,7 +179,7 @@ public class AddPlayerActivity extends Activity {
             
             setApi(api);
         }
-        protected void onPostExecute(ListPlayersAPI api) {
+        protected void onPostExecute(AddPlayerAPI api) {
             setProgressBarIndeterminateVisibility(false);
             
             // On s'assure que l'objet de retour existe
@@ -187,12 +187,18 @@ public class AddPlayerActivity extends Activity {
              //List<String> your_array_list = new ArrayList<String>();
                 //your_array_list.add("foo");
                 //your_array_list.add("bar");
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                    getApplicationContext(), 
-                    android.R.layout.simple_list_item_1,
-                    api.names );
-            lv.setAdapter(arrayAdapter);
-            
+            //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                   // getApplicationContext(), 
+                    //android.R.layout.simple_list_item_1,
+                   // api.names );
+           // lv.setAdapter(arrayAdapter);
+           Intent i = new Intent(AddPlayerActivity.this, ListPlayers.class);
+           Intent intent = getIntent();
+           String TourneyID = intent.getStringExtra("TourneyID");
+           boolean own = intent.getBooleanExtra("owned",false);
+           i.putExtra("TourneyID", TourneyID);
+           i.putExtra("owned", own);
+           startActivity(i);
             
                 
                 

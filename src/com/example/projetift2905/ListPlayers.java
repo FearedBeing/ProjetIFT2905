@@ -1,6 +1,11 @@
 package com.example.projetift2905;
 
 import java.util.ArrayList;
+
+import android.view.ContextMenu;  
+import android.view.View;  
+import android.view.ContextMenu.ContextMenuInfo; 
+
 import java.util.List;
 
 import org.json.JSONArray;
@@ -13,7 +18,9 @@ import com.binarybeast.api.BinaryBeastAPI;
 
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -39,9 +46,11 @@ import android.os.Build;
 public class ListPlayers extends Activity {
     
     ListPlayersAPI api;
+    SupprimerJoueurAPI api2;
     String gameCode;
     private ListView lv;
     String TourTeamID;
+    ListPlayersAPI ap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +66,7 @@ public class ListPlayers extends Activity {
         
         
         lv = (ListView) findViewById(R.id.listView1);
+        
 
         new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");                    
         //Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();        //Pour verifier si la librairie
@@ -68,7 +78,6 @@ public class ListPlayers extends Activity {
         
         
         
-        this.api = null;
         
         //((Button)findViewById(R.id.button1)).setOnClickListener(new OnClickListener() {
             //@Override
@@ -91,6 +100,34 @@ public class ListPlayers extends Activity {
             //}
         //});    
     }
+    
+    @Override
+    public void onResume()
+        {  // After a pause OR at startup
+        super.onResume();
+        Intent intent = getIntent();
+        String TourneyID = intent.getStringExtra("TourneyID");
+        new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");                    
+        //Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();        //Pour verifier si la librairie
+
+        /* **************************************
+         * APPEL API POUR CREER LISTE DE TOURNOIS
+         * **************************************/                
+        new DownloadLoginTask().execute();
+        //Refresh your stuff here
+         }
+    
+    
+    
+    //protected void onRestart(Bundle savedInstanceState){
+        //new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");                    
+        //Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();        //Pour verifier si la librairie
+
+        /* **************************************
+         * APPEL API POUR CREER LISTE DE TOURNOIS
+         * **************************************/                
+        //new DownloadLoginTask().execute();
+    //}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -103,11 +140,17 @@ public class ListPlayers extends Activity {
                     Intent i = new Intent(ListPlayers.this, AddPlayerActivity.class);
                     /* HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEREEEEEEEEEEEEEEEEEEEE !!!!!*/
                     Intent intent = getIntent();
+                    boolean own = intent.getBooleanExtra("owned", false);
+                    System.out.println("Owned : "+ own);
                     String TourneyID = intent.getStringExtra("TourneyID");
                     i.putExtra("TourneyID", TourneyID);
+                    i.putExtra("owned", own);
                     startActivity(i);
                 }
             });
+        Intent intent = getIntent();
+        boolean own = intent.getBooleanExtra("owned", false);
+        if(!own)((Button)findViewById(R.id.button1)).setVisibility(View.INVISIBLE);
         return true;
     }
 
@@ -201,20 +244,80 @@ public class ListPlayers extends Activity {
                     android.R.layout.simple_list_item_1,
                     api.names );
             lv.setAdapter(arrayAdapter);
-            lv.setOnItemClickListener(new OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position,
-                        long id) {
-                    Intent intent = getIntent();
-                    String TourneyID = intent.getStringExtra("TourneyID");
-                    Intent i = new Intent(ListPlayers.this, SupprimerJoueur.class);
-                    i.putExtra("TourneyTeamID",api.infoForId.get(position).TourneyTeamID);
-                    i.putExtra("TourneyID", TourneyID);
-                    startActivity(i);
+            //lv.setOnItemClickListener(new OnItemClickListener() {
+              //  @Override
+                //public void onItemClick(AdapterView<?> parent, View view, int position,
+                  //      long id) {
+                   // Intent intent = getIntent();
+                    //String TourneyID = intent.getStringExtra("TourneyID");
+                    //Intent i = new Intent(ListPlayers.this, SupprimerJoueur.class);
+                    //ap=api;
+                    //i.putExtra("TourneyTeamID",api.infoForId.get(position).TourneyTeamID);
+                    //i.putExtra("TourneyID", TourneyID);
+                    //startActivity(i);
+                    //new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");                    
+                    //Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();        //Pour verifier si la librairie
+
+                    /* **************************************
+                     * APPEL API POUR CREER LISTE DE TOURNOIS
+                     * **************************************/                
+                    //new DownloadLoginTask().execute();
                     
-                    System.out.println(position);
-                }
-            });
+                    //System.out.println(position);
+                //}
+            //});
+            
+            
+            lv.setOnItemLongClickListener(new OnItemLongClickListener()
+            {
+                   public boolean onItemLongClick(AdapterView<?> arg0, View arg1, final int arg2,long arg3)
+                   {
+                       final String selectedValue = (String) lv.getItemAtPosition(arg2);
+                       AlertDialog.Builder alertDialog = new  AlertDialog.Builder(ListPlayers.this);
+                       alertDialog.setTitle("Supprimer ce joueur ?");
+                       alertDialog.setMessage(selectedValue);     
+                       alertDialog.setNegativeButton("Oui", new DialogInterface.OnClickListener() {
+                              public void onClick(DialogInterface dialog, int which) {
+
+                                  System.out.println("plz");
+                                  TourTeamID=api.infoForId.get(arg2).TourneyTeamID;
+                                  System.out.println("plzzzz");
+                                  new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");                    
+                                  //Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();        //Pour verifier si la librairie
+
+                                  /* **************************************
+                                   * APPEL API POUR CREER LISTE DE TOURNOIS
+                                   * **************************************/                
+                                  new DownloadLoginTask2().execute();
+                                  new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");                    
+                                  //Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();        //Pour verifier si la librairie
+
+                                  /* **************************************
+                                   * APPEL API POUR CREER LISTE DE TOURNOIS
+                                   * **************************************/                
+                                  new DownloadLoginTask().execute();
+
+                          } }); 
+                          alertDialog.setPositiveButton("Non", new DialogInterface.OnClickListener() {
+                              public void onClick(DialogInterface dialog, int which) {
+                                 // alertDialog.dismiss();
+                          } }); 
+                          Intent intent = getIntent();
+                          boolean owned = intent.getBooleanExtra("owned", false);
+                          System.out.println(owned);
+                          if(owned){
+                              alertDialog.show();
+                          }
+                          
+                       
+                       
+                       
+                       
+                       
+                       
+                       return true;
+                   }
+           });
             
             
                 
@@ -224,7 +327,7 @@ public class ListPlayers extends Activity {
                 
                 
                 
-            
+            //
             
         }
     }
@@ -247,15 +350,6 @@ private class DownloadLoginTask2 extends AsyncTask<String, String, SupprimerJoue
         
         protected void onPreExecute() {
             setProgressBarIndeterminateVisibility(true);
-            lv.setOnItemLongClickListener(new OnItemLongClickListener()
-            {
-                   public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2,long arg3)
-                   {
-
-                       TourTeamID=api.infoForId.get(arg2).TourneyTeamID;
-                       return true;
-                   }
-           });
         }
         
         protected SupprimerJoueurAPI doInBackground(String... params) {
@@ -305,19 +399,20 @@ private class DownloadLoginTask2 extends AsyncTask<String, String, SupprimerJoue
              //List<String> your_array_list = new ArrayList<String>();
                 //your_array_list.add("foo");
                 //your_array_list.add("bar");
-            new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");                    
+            //new BinaryBeastAPI(getApplicationContext().getResources().getString(R.string.API_KEY) + "");                    
             //Toast.makeText(getApplicationContext(), "Version :" + BinaryBeastAPI.API_VERSION, Toast.LENGTH_SHORT).show();        //Pour verifier si la librairie
 
             /* **************************************
              * APPEL API POUR CREER LISTE DE TOURNOIS
              * **************************************/                
-            new DownloadLoginTask2().execute();
+            //new DownloadLoginTask2().execute();
+            
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                     getApplicationContext(), 
                     android.R.layout.simple_list_item_1,
                     api.names );
             lv.setAdapter(arrayAdapter);
-            lv.setOnItemClickListener(new OnItemClickListener() {
+            /*lv.setOnItemClickListener(new OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position,
                         long id) {
@@ -331,6 +426,7 @@ private class DownloadLoginTask2 extends AsyncTask<String, String, SupprimerJoue
                     System.out.println(position);
                 }
             });
+            */
             
             
                 

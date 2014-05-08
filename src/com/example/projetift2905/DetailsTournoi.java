@@ -73,8 +73,12 @@ public class DetailsTournoi extends Activity {
                 public void onClick(View arg0) {
                             
                     Intent i = new Intent(DetailsTournoi.this, ListPlayers.class);
+                    Intent intent=getIntent();
+                    boolean own=intent.getBooleanExtra("owned", false);
+                    System.out.println("Proprio transfere:"+own);
                     System.out.println("ID Tournoi avant le transfert : "+TourneyID);
                     i.putExtra("TourneyID", TourneyID);
+                    i.putExtra("owned", own);
                     startActivity(i);
                     
                 }
@@ -82,8 +86,8 @@ public class DetailsTournoi extends Activity {
                 
         ImageButton deleter = (ImageButton)findViewById(R.id.IMGBTNDelete);
         if(getIntent().getBooleanExtra("owner", false)){
-        	// Bouton visible
-        	deleter.setOnClickListener(new OnClickListener() {
+            // Bouton visible
+            deleter.setOnClickListener(new OnClickListener() {
                 @Override
                     public void onClick(View arg0) {
                                 
@@ -94,8 +98,8 @@ public class DetailsTournoi extends Activity {
                     }
                 });
         }else{
-        	// Bouton invisible
-        	deleter.setVisibility(View.INVISIBLE);
+            // Bouton invisible
+            deleter.setVisibility(View.INVISIBLE);
         }
         
         
