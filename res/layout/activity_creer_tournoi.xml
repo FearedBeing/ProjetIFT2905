@@ -77,17 +77,22 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:text="Description: "
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#ffffff" />
 
                 <EditText
                     android:id="@+id/editTextDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textMultiLine"
-                    android:text="Description du tournoi" />
+                    android:text="Description du tournoi"
+                    android:textColor="#ffffff" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -98,17 +103,22 @@
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:text="Invitation:"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#ffffff" />
 
                 <EditText
                     android:id="@+id/editTextInvit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textMultiLine"
-                    android:text="id0 id1 ..." />
+                    android:text="id0 id1 ..."
+                    android:textColor="#ffffff" />
+
             </RelativeLayout>
 
         </LinearLayout>
