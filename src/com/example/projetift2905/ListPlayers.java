@@ -1,47 +1,25 @@
 package com.example.projetift2905;
 
-import java.util.ArrayList;
-
-import android.view.ContextMenu;  
 import android.view.View;  
-import android.view.ContextMenu.ContextMenuInfo; 
-
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.binarybeast.api.BBRequest;
-import com.binarybeast.api.BBRequestHandler;
-import com.binarybeast.api.BBResult;
 import com.binarybeast.api.BinaryBeastAPI;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Build;
 
 public class ListPlayers extends Activity {
     
