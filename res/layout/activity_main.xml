@@ -8,16 +8,14 @@
     tools:ignore="MergeRootFrame" 
     android:orientation="vertical" >
 
-         <Button
-             android:id="@+id/buttonToCreerTournoi"
-             style="?android:attr/buttonStyleSmall"
-             android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             android:text="Creer un tournoi"
-             android:textAppearance="?android:attr/textAppearanceMediumInverse"
-             android:textColor="#ffffff" />
+    <ListView
+        android:id="@+id/filtres"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:scrollbarAlwaysDrawVerticalTrack="false" >
+    </ListView>
 
-         <android.support.v4.view.ViewPager
+    <android.support.v4.view.ViewPager
              xmlns:android="http://schemas.android.com/apk/res/android"
              android:id="@+id/pager"
              android:layout_width="fill_parent"
@@ -26,15 +24,17 @@
              android:scrollbarStyle="insideOverlay"
              android:scrollbars="vertical" >
 
-         </android.support.v4.view.ViewPager>
+     </android.support.v4.view.ViewPager>
 
-         <ListView
-             android:id="@+id/filtres"
-             android:layout_width="match_parent"
-             android:layout_height="52dp"
-             android:scrollbarAlwaysDrawVerticalTrack="false" >
-         </ListView>
+     <Button
+             android:id="@+id/buttonToCreerTournoi"
+             style="?android:attr/buttonStyleSmall"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:text="Creer un tournoi"
+             android:textAppearance="?android:attr/textAppearanceMediumInverse"
+             android:textColor="#ffffff" />
 
-     </LinearLayout>
+</LinearLayout>
 
 
