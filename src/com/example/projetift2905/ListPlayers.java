@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
